@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'main.dart';
 
 class InvokeTicket extends StatefulWidget {
   @override
@@ -59,6 +61,7 @@ class _InvokeTicketState extends State<InvokeTicket> {
                 onSubmitted: (String str){
                   setState(() {
                     comment = str;
+                    print(comment);
                   });
                 },
               ),
@@ -66,6 +69,10 @@ class _InvokeTicketState extends State<InvokeTicket> {
               RaisedButton(
                   onPressed: (){
                     
+                    Fluttertoast.showToast(msg: "Token Submitted!");
+                    Navigator.push(context, new MaterialPageRoute(
+                        builder: (BuildContext context) => new MyHomePage() ),
+                    );
                   },
                   child: Text("Submit"),
               ),
