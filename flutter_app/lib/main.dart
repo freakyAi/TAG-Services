@@ -110,7 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text("TAG Services"),
-        centerTitle: true,
       ),
       drawer: new Drawer(
         child: ListView(

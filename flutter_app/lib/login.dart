@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
 
       body: new Container(
-        padding: EdgeInsets.symmetric(vertical: 30.0),
+        padding: EdgeInsets.symmetric(vertical: 0.0),
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -78,13 +78,13 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 60.0),
+            SizedBox(height: 120.0),
             Padding(
                 padding : EdgeInsets.all(20.0),
                 child : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    FadeAnimation(1,Text("Login", style: TextStyle(color: Colors.white, fontSize: 40.0, fontFamily: "Arial"),)),
+                    FadeAnimation(2,Text("Login", style: TextStyle(color: Colors.white, fontSize: 40.0, fontFamily: "Arial"),)),
                     SizedBox(height: 10.0,),
                   ],
                 )
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(60.0), topRight: Radius.circular(60.0)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(500.0), topRight: Radius.circular(0)),
                     boxShadow: [BoxShadow(
                       color: Color.fromRGBO(200, 95, 27, 3),
                       blurRadius: 20.0,
@@ -105,8 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: 60,),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                        FadeAnimation(1,Container(
+                          padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
                           decoration: BoxDecoration(
                             color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -157,36 +157,37 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: 30,),
+                              Text("Forgot Password?", style: TextStyle(color: Colors.grey),),
+                              SizedBox(height: 30,),
+                              InkWell(
+                                onTap: checkCredentials,
+                                child :Container(
+                                  height: 50,
+                                  margin: EdgeInsets.symmetric(horizontal: 100),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(40),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          colors: [
+                                            Colors.orange[600],
+                                            Colors.orange[400],
+                                            Colors.orange[400],
+                                          ]
+                                      )
+                                  ),
+                                  child: Center(
+                                    child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
+                                  ),
+
+                                ),
+                              )
+
+
                             ],
                           ),
-                        ),
-                        SizedBox(height: 30,),
-                        Text("Forgot Password?", style: TextStyle(color: Colors.grey),),
-                        SizedBox(height: 30,),
-                        InkWell(
-                          onTap: checkCredentials,
-                          child :Container(
-                            height: 50,
-                            margin: EdgeInsets.symmetric(horizontal: 100),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                gradient: LinearGradient(
-                                    begin: Alignment.bottomLeft,
-                                    colors: [
-                                      Colors.orange[600],
-                                      Colors.orange[400],
-                                      Colors.orange[400],
-                                    ]
-                                )
-                            ),
-                            child: Center(
-                              child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
-                            ),
-
-                        ),
-                        )
-
-                      ],
+                        ),)
+                            ],
                     ),
                   ),
             )
