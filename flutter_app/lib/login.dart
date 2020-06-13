@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 import 'FadeAnimation.dart';
 //import 'about.dart';
-//import 'invoke.dart';
+import 'register.dart';
 import 'main.dart';
 
 
@@ -157,7 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               SizedBox(height: 30,),
-                              Text("Forgot Password?", style: TextStyle(color: Colors.grey),),
+                              Container(
+                                child: Text("Forgot Password?",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+
+                              ),
                               SizedBox(height: 30,),
                               InkWell(
                                 onTap: checkCredentials,
@@ -178,17 +183,27 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Center(
                                     child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
                                   ),
-
+                                ),
+                              ),
+                              SizedBox(height: 30,),
+                              InkWell(
+                                onTap: () {
+                                  //Navigator.of(context).pop();
+                                  Navigator.push(context, new MaterialPageRoute(
+                                  builder: (BuildContext context) => new RegisterPage() )
+                                    );
+                                  },
+                                child: Text("New member?",
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               )
-
-
                             ],
                           ),
-                        ),)
-                            ],
-                    ),
-                  ),
+                        ),
+                       )
+                     ],
+                   ),
+                 ),
             )
             )
           ],
@@ -201,8 +216,8 @@ class _LoginPageState extends State<LoginPage> {
   void checkCredentials(){
     if(username == "aju" && password == "123"){
       Fluttertoast.showToast(msg: "Login Successful");
-      Navigator.of(context).pop();
-      Navigator.push(context, new MaterialPageRoute(
+      //Navigator.of(context).pop();
+      Navigator.pushReplacement(context, new MaterialPageRoute(
           builder: (BuildContext context) => new MyHomePage() )
       );
     }

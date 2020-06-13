@@ -134,7 +134,7 @@ class _InvokeTicketState extends State<InvokeTicket> {
               SizedBox(width: 20.0),
               RaisedButton(
               onPressed: () => _fileOpener(),
-              child: new Text("Choose File"),
+                child: new Text("Choose File"),
               ),
             ],
           )
@@ -179,9 +179,9 @@ class _InvokeTicketState extends State<InvokeTicket> {
                     }
                     _formKey.currentState.save();
                     Fluttertoast.showToast(msg: "Token Submitted!");
-                    /*Navigator.push(context, new MaterialPageRoute(
+                    Navigator.push(context, new MaterialPageRoute(
                         builder: (BuildContext context) => new MyHomePage() ),
-                    );*/
+                    );
                   },
                   child: Text("Submit"),
                 ),
