@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1004088859500",
+    "firebase_url": "https://teamartsgroup-ba80e.firebaseio.com",
+    "project_id": "teamartsgroup-ba80e",
+    "storage_bucket": "teamartsgroup-ba80e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004088859500:android:dde7c87296dde33d0db149",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp.tagservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004088859500-pvu8b00de77o47ndr1f3oa4fnb7g32fj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4-XPeKDldZaNEjFB2zz3c48cQpNVDFUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004088859500-pvu8b00de77o47ndr1f3oa4fnb7g32fj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

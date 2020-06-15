@@ -1,16 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:file_picker/file_picker.dart';
 import 'main.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
-// ignore: camel_case_types
+
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-// ignore: camel_case_types
 class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKeyRegister = GlobalKey<FormState>();
   String firstName;
@@ -19,6 +20,30 @@ class _RegisterPageState extends State<RegisterPage> {
   String email;
   String password;
   String rePassword;
+  String _timezone = 'Unknown';
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  Future<void> initPlatformState() async {
+    String timezone;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      timezone = await FlutterNativeTimezone.getLocalTimezone();
+    } on PlatformException {
+      timezone = 'Failed to get the timezone.';
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _timezone = timezone;
+    });
+  }
+
 
   Widget _buildFirstName(){
     return TextFormField(
@@ -132,6 +157,10 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  Widget _buildTimeZone(){
+    return  Text('Timezone : $_timezone\n',);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -141,18 +170,24 @@ class _RegisterPageState extends State<RegisterPage> {
       body: new Container(
         child: Padding(
           padding: const EdgeInsets.all(40.0),
-          child: new Center(
-            child: Form(
-              key: _formKeyRegister,
+          child: Form(
+            key: _formKeyRegister,
+            child: SingleChildScrollView(
               child: new Column(
                 children: <Widget>[
-                  _buildFirstName(),
-                  SizedBox(height: 20.0),
-                  _buildLastName(),
+                  new Row(
+                    children: <Widget>[
+                      new Flexible(child: _buildFirstName()),
+                      SizedBox(width: 20),
+                      new Flexible(child: _buildLastName()),
+                    ],
+                  ),
                   SizedBox(height: 20.0),
                   _buildPhoneNumber(),
                   SizedBox(height: 20.0),
                   _buildEmail(),
+                  SizedBox(height: 20.0),
+                  _buildTimeZone(),
                   SizedBox(height: 20.0),
                   _buildPassword(),
                   SizedBox(height: 20.0),

@@ -101,108 +101,110 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(25.0),
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(height: 60,),
-                        FadeAnimation(1,Container(
-                          padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(120, 95, 27, .3),
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 5)
-                              )]
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    border: Border(bottom: BorderSide(color: Colors.grey[200]))
-                                ),
-                                child: TextField(
-                                  onChanged: (String str){
-                                    setState(() {
-                                      username = str;
-                                      print(username);
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText: "Email ID",
-                                    hintStyle: TextStyle(color: Colors.grey),
-                                    border: InputBorder.none
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(height: 60,),
+                          FadeAnimation(1,Container(
+                            padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [BoxShadow(
+                                    color: Color.fromRGBO(120, 95, 27, .3),
+                                    blurRadius: 20.0,
+                                    offset: Offset(0, 5)
+                                )]
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      border: Border(bottom: BorderSide(color: Colors.grey[200]))
                                   ),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    border: Border(bottom: BorderSide(color: Colors.grey[200]))
-                                ),
-                                child: TextField(
-                                  obscureText: true,
-                                  onChanged: (String str) {
-                                    setState(() {
-                                      password = str;
-                                      print(password);
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                      hintText: "Password",
+                                  child: TextField(
+                                    onChanged: (String str){
+                                      setState(() {
+                                        username = str;
+                                        print(username);
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Email ID",
                                       hintStyle: TextStyle(color: Colors.grey),
                                       border: InputBorder.none
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 30,),
-                              Container(
-                                child: Text("Forgot Password?",
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-
-                              ),
-                              SizedBox(height: 30,),
-                              InkWell(
-                                onTap: checkCredentials,
-                                child :Container(
-                                  height: 50,
-                                  margin: EdgeInsets.symmetric(horizontal: 100),
+                                Container(
+                                  padding: EdgeInsets.all(10),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      gradient: LinearGradient(
-                                          begin: Alignment.bottomLeft,
-                                          colors: [
-                                            Colors.orange[600],
-                                            Colors.orange[400],
-                                            Colors.orange[400],
-                                          ]
-                                      )
+                                      border: Border(bottom: BorderSide(color: Colors.grey[200]))
                                   ),
-                                  child: Center(
-                                    child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
+                                  child: TextField(
+                                    obscureText: true,
+                                    onChanged: (String str) {
+                                      setState(() {
+                                        password = str;
+                                        print(password);
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                        hintText: "Password",
+                                        hintStyle: TextStyle(color: Colors.grey),
+                                        border: InputBorder.none
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(height: 30,),
-                              InkWell(
-                                onTap: () {
-                                  //Navigator.of(context).pop();
-                                  Navigator.push(context, new MaterialPageRoute(
-                                  builder: (BuildContext context) => new RegisterPage() )
-                                    );
-                                  },
-                                child: Text("New member?",
-                                  style: TextStyle(color: Colors.grey),
+                                SizedBox(height: 30,),
+                                Container(
+                                  child: Text("Forgot Password?",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+
                                 ),
-                              )
-                            ],
+                                SizedBox(height: 30,),
+                                InkWell(
+                                  onTap: checkCredentials,
+                                  child :Container(
+                                    height: 50,
+                                    margin: EdgeInsets.symmetric(horizontal: 100),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(40),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.bottomLeft,
+                                            colors: [
+                                              Colors.orange[600],
+                                              Colors.orange[400],
+                                              Colors.orange[400],
+                                            ]
+                                        )
+                                    ),
+                                    child: Center(
+                                      child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 30,),
+                                InkWell(
+                                  onTap: () {
+                                    //Navigator.of(context).pop();
+                                    Navigator.push(context, new MaterialPageRoute(
+                                    builder: (BuildContext context) => new RegisterPage() )
+                                      );
+                                    },
+                                  child: Text("New member?",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                       )
-                     ],
+                         )
+                       ],
                    ),
+                    ),
                  ),
             )
             )
