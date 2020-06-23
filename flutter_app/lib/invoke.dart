@@ -155,36 +155,36 @@ class _InvokeTicketState extends State<InvokeTicket> {
         title: new Text("New Ticket"),
       ),
       body: new Container(
-      child: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: new Center(
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: new Column(
-                children: <Widget>[
-                  _buildTopic(),
-                  SizedBox(height: 20.0),
-                  _buildServices(),
-                  SizedBox(height: 20.0),
-                  _buildSummary(),
-                  SizedBox(height: 20.0),
-                  _buildDetails(),
-                  SizedBox(height: 20.0),
-                  _buildFile(),
-                  SizedBox(height: 50.0),
-                  RaisedButton(
-                    onPressed: (){
-                      if(!_formKey.currentState.validate()){
-                        return;
-                      }
-                      _formKey.currentState.save();
-                      Fluttertoast.showToast(msg: "Token Submitted!");
-                      Navigator.push(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new MyHomePage() ),
-                      );
-                    },
-                    child: Text("Submit"),
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: new Center(
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: new Column(
+                  children: <Widget>[
+                    _buildTopic(),
+                    SizedBox(height: 20.0),
+                    _buildServices(),
+                    SizedBox(height: 20.0),
+                    _buildSummary(),
+                    SizedBox(height: 20.0),
+                    _buildDetails(),
+                    SizedBox(height: 20.0),
+                    _buildFile(),
+                    SizedBox(height: 50.0),
+                    RaisedButton(
+                      onPressed: (){
+                        if(!_formKey.currentState.validate()){
+                          return;
+                        }
+                        _formKey.currentState.save();
+                        Fluttertoast.showToast(msg: "Token Submitted!");
+                        Navigator.push(context, new MaterialPageRoute(
+                            builder: (BuildContext context) => new MyHomePage() ),
+                        );
+                      },
+                      child: Text("Submit"),
                   ),
                 ],
               ),

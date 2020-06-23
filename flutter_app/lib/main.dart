@@ -35,10 +35,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<TicketStatus> menu = [
-    TicketStatus(id : "1" , date : "18/06/2020", status : "Pending"),
-    TicketStatus(id : "2" , date : "19/06/2020", status : "Approved")
-  ];
 
   Widget _buildTicketStatus(String id,String date,String status){
     return Container(
