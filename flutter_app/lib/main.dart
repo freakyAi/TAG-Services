@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 //IMPORT PAGES
 import 'about.dart';
@@ -41,9 +43,35 @@ class Menu {
 
   Menu({ this.id, this.date, this.status});
 
+  Menu.fromJson(Map<String, dynamic> json)
+      : id = json['ticked'],
+        date = json['data'],
+        status = 'Open';
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var menuList;
+  @override initState() {
+    super.initState();
+    //getTickets();
+  }
+  var ticketData;
+
+  Future<List<Menu>> getTickets() async {
+    try {
+      //change the ip address to match your laptop's ip address
+      //also change port number of wamp to 8000 through its settings
+      ticketData = await http.get('http://192.168.43.111:8000/TAG/app/tickets.php?ticketNum=123456');
+      print(ticketData.body);
+
+      Map menuMap = jsonDecode(ticketData);
+      menu = Menu.fromJson(menuMap) as List<Menu>;
+      print(menu);
+      return menu;
+    } catch(e) {
+      print('Got an error! statusCOde: ${ticketData.statusCode}\n ${e.toString()}');
+    }
+  }
 
   List<Menu> menu = [
     Menu(id : "1" , date : "18/06/2020", status:"Pending"),
@@ -114,6 +142,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         )
+    );
+  }
+
+  Widget buildBody(BuildContext context) {
+    getTickets();
+    return FutureBuilder<List<Menu>> (
+      future: getTickets(),
+      builder: (context, snapshot) {
+        if(snapshot.hasError) print(snapshot.error);
+
+        //Show a progress bar until data loads
+        if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
+        return ListView(
+          children: menu.map((Menu) => ticketCard(Menu)).toList(),
+        );
+      },
     );
   }
 
@@ -225,26 +269,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: ListView(
-        // ignore: non_constant_identifier_names
-        children: menu.map((Menu) => ticketCard(Menu)).toList(),
-      )
-
-//This works as well..
-      /*Container(
-        child : Padding(
-          padding: const EdgeInsets.all(40.0),
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  _buildTicketStatus("1","18/06/2020","Pending"),
-                  SizedBox(height: 20,),
-                  _buildTicketStatus("2", "19/06/2020", "Approved")
-                ],
-              )
-            )
-        ),
-      )*/
+      body: buildBody(context)
+//      ListView(
+//        // ignore: non_constant_identifier_names
+//        children: menu.map((Menu) => ticketCard(Menu)).toList(),
+//      )
     );
   }
 
