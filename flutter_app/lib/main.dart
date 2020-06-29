@@ -43,10 +43,13 @@ class Menu {
 
   Menu({ this.id, this.date, this.status});
 
-  Menu.fromJson(Map<String, dynamic> json)
-      : id = json['ticked'],
-        date = json['data'],
-        status = 'Open';
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu (
+      id : json['ticket_id'],
+      date : json['number'],
+      status : 'Open'
+    );
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -61,24 +64,27 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
-      ticketData = await http.get('http://192.168.43.111:8000/TAG/app/tickets.php?ticketNum=123456');
+      ticketData = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?ticketNum=123456');
       print(ticketData.body);
 
-      Map menuMap = jsonDecode(ticketData);
-      menu = Menu.fromJson(menuMap) as List<Menu>;
-      print(menu);
+      final  menuMap = jsonDecode(ticketData.body);
+//      menu = Menu.fromJson(menuMap).toList();
+      menu = menuMap.map<Menu>((iter)  => Menu.fromJson(iter)).toList();
+//        menuMap.map<Menu>((json) => Photo.fromJson(json)).toList();
+      //print(menuMap);
       return menu;
     } catch(e) {
-      print('Got an error! statusCOde: ${ticketData.statusCode}\n ${e.toString()}');
+      print('Got an error!\n ${e.toString()}');
     }
   }
 
-  List<Menu> menu = [
-    Menu(id : "1" , date : "18/06/2020", status:"Pending"),
-    Menu(id : "2" , date : "20/06/2020", status:"Approved"),
-    Menu(id : "3" , date : "21/06/2020", status:"Completed")
-    //Menu(icon : "2" , text : "History")
-  ];
+  List<Menu> menu;
+//  List<Menu> menu = [
+//    Menu(id : "1" , date : "18/06/2020", status:"Pending"),
+//    Menu(id : "2" , date : "20/06/2020", status:"Approved"),
+//    Menu(id : "3" , date : "21/06/2020", status:"Completed")
+//    //Menu(icon : "2" , text : "History")
+//  ];
 
   Widget ticketCard(menu) {
     return Container(
