@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:tagservices/TicketDetails.dart';
+import 'package:tagservices/TicketStatus.dart';
 import 'dart:convert';
 
 //IMPORT PAGES
@@ -275,7 +277,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: buildBody(context)
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+        width: double.infinity,
+        child: InkWell(
+          child: buildBody(context),
+          onTap: () {
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (BuildContext context) => new TicketDetails())
+            );
+          },
+        ),
+      )
 //      ListView(
 //        // ignore: non_constant_identifier_names
 //        children: menu.map((Menu) => ticketCard(Menu)).toList(),
