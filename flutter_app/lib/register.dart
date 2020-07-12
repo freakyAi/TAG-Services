@@ -199,7 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return;
                       }
                       _formKeyRegister.currentState.save();
-                      Fluttertoast.showToast(msg: "Registered!");
+                      //Fluttertoast.showToast(msg: "Registered!");
                       Navigator.pushReplacement(context, new MaterialPageRoute(
                           builder: (BuildContext context) => new MyHomePage() ),
                       );

@@ -29,6 +29,7 @@ dependencies:
   http: ^0.12.1
   flutter_native_timezone: ^1.0.4
   shimmer:
+  url_launcher:
 
 
   # The following adds the Cupertino Icons font to your application.

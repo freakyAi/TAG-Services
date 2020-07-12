@@ -202,14 +202,14 @@ class _LoginPageState extends State<LoginPage> {
 
   void checkCredentials(){
     if(username == "aju" && password == "123"){
-      Fluttertoast.showToast(msg: "Login Successful");
+      //Fluttertoast.showToast(msg: "Login Successful");
       _save('true');
       Navigator.pushReplacement(context, new MaterialPageRoute(
           builder: (BuildContext context) => new MyHomePage() )
       );
     }
     else{
-      Fluttertoast.showToast(msg: "Invalid Credentials");
+      //Fluttertoast.showToast(msg: "Invalid Credentials");
     }
   }
 

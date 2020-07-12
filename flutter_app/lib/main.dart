@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:tagservices/TicketDetails.dart';
-import 'package:tagservices/TicketStatus.dart';
+//import 'package:tagservices/TicketStatus.dart';
 import 'dart:convert';
 
 //IMPORT PAGES
@@ -10,6 +9,8 @@ import 'about.dart';
 import 'services.dart';
 import 'invoke.dart';
 import 'login.dart';
+import 'TicketDetails.dart';
+import 'getintouch.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -252,6 +253,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pop();
                 Navigator.push(context, new MaterialPageRoute(
                     builder: (BuildContext context) => new AboutUS() )
+                );
+              },
+            ),
+            new ListTile(
+              title: new Text("Get in Touch"),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(context, new MaterialPageRoute(
+                    builder: (BuildContext context) => new GetInTouch() )
                 );
               },
             ),
