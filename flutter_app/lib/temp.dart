@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tagservices/getintouch.dart';
 import 'package:tagservices/invoke.dart';
 
 //IMPORT PAGES
-import 'about.dart';
 import 'services.dart';
 //import 'menu.dart';
 import 'login.dart';
@@ -249,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.push(context, new MaterialPageRoute(
-                    builder: (BuildContext context) => new AboutUS() )
+                    builder: (BuildContext context) => new GetInTouch() )
                 );
               },
             ),

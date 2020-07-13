@@ -72,47 +72,75 @@ class _ServicesState extends State<Services> {
                   builder: (BuildContext context) => _navigate[index])
               );
             },
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              ),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 60,
-                          height:60,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage(_selectIcon[index]),
-                          )
-                        ),
-                        SizedBox(width: 40,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+            child:  Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Container(
+                  //width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          colors: [
+                            Colors.orange[800],
+                            Colors.orange[400],
+                            Colors.orange[400]
+                          ]
+                      )
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              _selectService[index],
-                              style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold),
+                            Row(
+                              //crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                    width: 60,
+                                    height:60,
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(_selectIcon[index]),
+                                    )
+                                ),
+                                SizedBox(width: 40,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      _selectService[index],
+                                      style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-
       ))
+    )
+    )
     );
   }
 }
