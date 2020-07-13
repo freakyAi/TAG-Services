@@ -129,6 +129,16 @@ class _TicketDetailsState extends State<TicketDetails> {
                                           Text("Approved"),
                                         ],
                                       ),
+                                      new Row(
+                                        children: <Widget>[
+                                          Text("Agent Contact No .: ", style: TextStyle(color: Colors
+                                              .black,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold)),
+                                          SizedBox(width: 20,),
+                                          Text("9881266239"),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ],
