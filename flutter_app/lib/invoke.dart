@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:tagservices/Drawer.dart';
 import 'main.dart';
 
 class InvokeTicket extends StatefulWidget {
@@ -25,8 +25,10 @@ class _InvokeTicketState extends State<InvokeTicket> {
   var service;
   String path;
   var topic;
+  // ignore: non_constant_identifier_names
   int token_no;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   var help_topic = {
     "CCTV Issue",
     "Feedback",
@@ -154,6 +156,7 @@ class _InvokeTicketState extends State<InvokeTicket> {
       appBar: new AppBar(
         title: new Text("New Ticket"),
       ),
+      drawer: DrawerMenu(),
       body: new Container(
         child: Padding(
           padding: const EdgeInsets.all(40.0),

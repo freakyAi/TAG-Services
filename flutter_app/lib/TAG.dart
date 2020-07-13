@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tagservices/bootloader.dart';
 
-import 'main.dart';
-import 'login.dart';
-
 
 class TAG extends StatelessWidget {
   // This widget is the root of your application.

@@ -59,6 +59,17 @@ class _TicketDetailsState extends State<TicketDetails> {
                                     SizedBox(height: 10,),
                                     new Row(
                                       children: <Widget>[
+                                        Text("Service Type : ", style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold)),
+                                        SizedBox(width: 20,),
+                                        Text("A/C Repair"),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10,),
+                                    new Row(
+                                      children: <Widget>[
                                         Text("Status : ", style: TextStyle(color: Colors
                                             .black,
                                             fontSize: 16,
@@ -108,27 +119,6 @@ class _TicketDetailsState extends State<TicketDetails> {
                                         ],
                                       ),
                                       SizedBox(height: 10,),
-                                      new Row(
-                                        children: <Widget>[
-                                          Text("Assigned Date : ", style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold)),
-                                          SizedBox(width: 20,),
-                                          Text("20/12/2019"),
-                                        ],
-                                      ),
-                                      SizedBox(height: 10,),
-                                      new Row(
-                                        children: <Widget>[
-                                          Text("Status : ", style: TextStyle(color: Colors
-                                              .black,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold)),
-                                          SizedBox(width: 20,),
-                                          Text("Approved"),
-                                        ],
-                                      ),
                                       new Row(
                                         children: <Widget>[
                                           Text("Agent Contact No .: ", style: TextStyle(color: Colors

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tagservices/Drawer.dart';
 
 //Import Pages
 import 'Electrical.dart';
@@ -51,10 +52,12 @@ class _ServicesState extends State<Services> {
   ];
   
   @override
-  Widget build(BuildContext context) {    return new Scaffold(
+  Widget build(BuildContext context) {
+    return new Scaffold(
       appBar: new AppBar(
         title: new Text("Services"),
       ),
+      drawer: DrawerMenu(),
       body:
       ListView.builder(
         itemCount: 8,
@@ -103,7 +106,6 @@ class _ServicesState extends State<Services> {
                         ),
                       ],
                     ),
-                    Container(),
                   ],
                 ),
               ),
