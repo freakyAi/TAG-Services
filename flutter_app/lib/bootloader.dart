@@ -15,7 +15,8 @@ class BootPage extends StatelessWidget {
     return MaterialApp(
       title: 'TAG Services',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.amber,
+        primaryColor: Colors.grey[50],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BootLoad(),

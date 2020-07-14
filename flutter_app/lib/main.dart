@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TAG Services',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'TAG Services'),

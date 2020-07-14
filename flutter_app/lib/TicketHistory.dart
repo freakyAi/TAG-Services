@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -150,15 +151,60 @@ class _TicketHistoryState extends State<TicketHistory> {
         ),
         drawer: DrawerMenu(),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-          width: double.infinity,
-          child: InkWell(
-            child: buildBody(context),
-            onTap: () {
-              Navigator.push(context, new MaterialPageRoute(
-                  builder: (BuildContext context) => new TicketDetails())
-              );
-            },
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Row(
+                  //crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: InkWell(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border(
+                              right: BorderSide()
+                            ),
+                          ),
+                          child:
+                            Text("Filter",style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border(
+                                right: BorderSide()
+                            ),
+                          ),
+                          child:
+                          Text(" Sort ",style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                  width: double.infinity,
+                  child: InkWell(
+                    child: buildBody(context),
+                    onTap: () {
+                      Navigator.push(context, new MaterialPageRoute(
+                          builder: (BuildContext context) => new TicketDetails())
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         )
 //      ListView(

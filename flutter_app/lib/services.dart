@@ -103,7 +103,7 @@ class _ServicesState extends State<Services> {
                         padding: const EdgeInsets.all(4.0),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                          child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           //crossAxisAlignment: CrossAxisAlignment.start,
