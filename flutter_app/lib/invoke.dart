@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:tagservices/Drawer.dart';
 import 'main.dart';
 
 class InvokeTicket extends StatefulWidget {
@@ -36,6 +35,12 @@ class _InvokeTicketState extends State<InvokeTicket> {
     "Report a Problem",
     "Access Issue"
   };
+
+  double xOffset = 0;
+  double yOffset = 0;
+  double scaleFactor = 1;
+  bool isDrawerOpen = false;
+
 
   Widget _buildTopic(){
     return DropdownButtonFormField<String>(
@@ -151,49 +156,122 @@ class _InvokeTicketState extends State<InvokeTicket> {
 
   @override
   Widget build(BuildContext context) {
-
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("New Ticket"),
-      ),
-      drawer: DrawerMenu(),
-      body: new Container(
-        child: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: new Column(
-                children: <Widget>[
-                  //SizedBox(height: 40,),
-                  _buildTopic(),
-                  SizedBox(height: 20.0),
-                  _buildServices(),
-                  SizedBox(height: 20.0),
-                  _buildSummary(),
-                  SizedBox(height: 20.0),
-                  _buildDetails(),
-                  SizedBox(height: 20.0),
-                  _buildFile(),
-                  SizedBox(height: 50.0),
-                  RaisedButton(
-                    onPressed: (){
-                      if(!_formKey.currentState.validate()){
-                        return;
+    return new AnimatedContainer(
+      transform: Matrix4.translationValues(xOffset, yOffset, 0)..scale(scaleFactor),
+      duration: Duration(milliseconds: 250),
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(isDrawerOpen?20:0)
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.blue[50],
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                xOffset = 0;
+                yOffset = 0;
+                scaleFactor = 1;
+                isDrawerOpen = false;
+              });
+            },
+            child: Column(
+              children: [
+                SizedBox(height: 40,),
+                Container(
+                  margin: EdgeInsets.fromLTRB(20,0,50,0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      isDrawerOpen ? IconButton(
+                          icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                        setState(() {
+                          xOffset = 0;
+                          yOffset = 0;
+                          scaleFactor = 1;
+                          isDrawerOpen = false;
+                        });
                       }
-                      _formKey.currentState.save();
-                      //Fluttertoast.showToast(msg: "Token Submitted!");
-                      Navigator.push(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new MyHomePage() ),
-                      );
-                    },
-                    child: Text("Submit"),
+                      ): IconButton(icon: Icon(Icons.menu), onPressed: (){
+                        setState(() {
+                          xOffset = 230;
+                          yOffset = 150;
+                          scaleFactor = 0.6;
+                          isDrawerOpen = true;
+                        });
+                      }),
+                      //SizedBox(width: 50,),
+                      Column(
+                        children: [
+                          Text("Invoke New Ticket", style: TextStyle(fontSize: 18),)
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10,),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+                        child: Form(
+                          key: _formKey,
+                          child: new Column(
+                            children: <Widget>[
+                              //SizedBox(height: 40,),
+                              _buildTopic(),
+                              SizedBox(height: 20.0),
+                              _buildServices(),
+                              SizedBox(height: 20.0),
+                              _buildSummary(),
+                              SizedBox(height: 20.0),
+                              _buildDetails(),
+                              SizedBox(height: 20.0),
+                              _buildFile(),
+                              SizedBox(height: 40.0),
+                              InkWell(
+                                onTap: () {
+                                  if(!_formKey.currentState.validate()){
+                                    return;
+                                  }
+                                  _formKey.currentState.save();
+                                  Navigator.pushReplacement(context, new MaterialPageRoute(
+                                      builder: (BuildContext context) => new MyHomePage() ),
+                                  );
+                                },
+                                child :Container(
+                                  height: 50,
+                                  margin: EdgeInsets.symmetric(horizontal: 80),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          colors: [
+                                            Colors.blue[800],
+                                            Colors.blue[500],
+                                            Colors.blue[300]
+                                          ]
+                                      )
+                                  ),
+                                  child: Center(
+                                    child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.bold)),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          ),
-      ),
+        ),
       ),
     );
   }

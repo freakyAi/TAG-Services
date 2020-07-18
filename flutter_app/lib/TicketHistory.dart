@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'TicketDetails.dart';
-import 'package:tagservices/Drawer.dart';
 
 
 class TicketHistory extends StatefulWidget {
@@ -39,12 +38,17 @@ class _TicketHistoryState extends State<TicketHistory> {
   }
   var ticketData;
 
+  double xOffset = 0;
+  double yOffset = 0;
+  double scaleFactor = 1;
+  bool isDrawerOpen = false;
+
   // ignore: missing_return
   Future<List<Menu>> getTickets() async {
     try {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
-      ticketData = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?ticketNum=123456');
+      ticketData = await http.get('http://192.168.43.198:8000/TAG/app/tickets.php?ticketNum=123456');
       print(ticketData.body);
 
       final  menuMap = jsonDecode(ticketData.body);
@@ -145,72 +149,90 @@ class _TicketHistoryState extends State<TicketHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: new AppBar(
-          title: new Text("Ticket History"),
+    return AnimatedContainer(
+      transform: Matrix4.translationValues(xOffset, yOffset, 0)..scale(scaleFactor),
+      duration: Duration(milliseconds: 250),
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(isDrawerOpen?20:0)
         ),
-        drawer: DrawerMenu(),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                child: Row(
-                  //crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: InkWell(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide()
-                            ),
-                          ),
-                          child:
-                            Text("Filter",style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
-                        ),
-                      ),
+        child: Container(
+            decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(20.0)
+            ),
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  xOffset = 0;
+                  yOffset = 0;
+                  scaleFactor = 1;
+                  isDrawerOpen = false;
+                });
+              },
+              child: Column(
+                children: [
+                  SizedBox(height: 50,),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(20,0,50,0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        isDrawerOpen ? IconButton(
+                            icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                          setState(() {
+                            xOffset = 0;
+                            yOffset = 0;
+                            scaleFactor = 1;
+                            isDrawerOpen = false;
+                          });
+                        }
+                        ): IconButton(icon: Icon(Icons.menu), onPressed: (){
+                          setState(() {
+                            xOffset = 230;
+                            yOffset = 150;
+                            scaleFactor = 0.6;
+                            isDrawerOpen = true;
+                          });
+                        }),
+                        //SizedBox(width: 50,),
+                        Column(
+                          children: [
+                            Text("Ticket History", style: TextStyle(fontSize: 18),)
+                          ],
+                        )
+                      ],
                     ),
-                    Expanded(
-                      child: InkWell(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                                right: BorderSide()
-                            ),
-                          ),
-                          child:
-                          Text(" Sort ",style: TextStyle(fontSize: 20),textAlign: TextAlign.center,),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                  width: double.infinity,
-                  child: InkWell(
-                    child: buildBody(context),
-                    onTap: () {
-                      Navigator.push(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new TicketDetails())
-                      );
-                    },
                   ),
-                ),
+                  //SizedBox(height: 0,),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                              width: double.infinity,
+                              child: InkWell(
+                                child: buildBody(context),
+                                onTap: () {
+                                  Navigator.push(context, new MaterialPageRoute(
+                                      builder: (BuildContext context) => new TicketDetails())
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
-            ],
+            ),
           ),
-        )
-//      ListView(
-//        // ignore: non_constant_identifier_names
-//        children: menu.map((Menu) => ticketCard(Menu)).toList(),
-//      )
+      ),
     );
   }
 }

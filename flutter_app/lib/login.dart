@@ -1,8 +1,9 @@
+import 'register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'FadeAnimation.dart';
-import 'register.dart';
+//import 'register.dart';
 import 'main.dart';
 
 
@@ -50,16 +51,16 @@ class _LoginPageState extends State<LoginPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             colors: [
-              Colors.orange[900],
-              Colors.orange[400],
-              Colors.orange[400]
+              Colors.blue[900],
+              Colors.blue[500],
+              Colors.blue[400]
             ]
           )
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 120.0),
+            SizedBox(height: 80.0),
             Padding(
                 padding : EdgeInsets.all(20.0),
                 child : Column(
@@ -76,9 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(500.0), topRight: Radius.circular(0)),
                     boxShadow: [BoxShadow(
-                      color: Color.fromRGBO(200, 95, 27, 3),
-                      blurRadius: 20.0,
-                      offset: Offset(0, -3)
+                        color: Color.fromRGBO(120, 95, 27, .3),
+                        blurRadius: 20.0,
+                        offset: Offset(0, -3)
                     )]
                   ),
                   child: Padding(
@@ -157,9 +158,9 @@ class _LoginPageState extends State<LoginPage> {
                                         gradient: LinearGradient(
                                             begin: Alignment.bottomLeft,
                                             colors: [
-                                              Colors.orange[600],
-                                              Colors.orange[400],
-                                              Colors.orange[400],
+                                              Colors.blue[800],
+                                              Colors.blue[500],
+                                              Colors.blue[300]
                                             ]
                                         )
                                     ),
@@ -173,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                                   onTap: () {
                                     //Navigator.of(context).pop();
                                     Navigator.push(context, new MaterialPageRoute(
-                                    builder: (BuildContext context) => new RegisterPage() )
+                                    builder: (BuildContext context) => new RegisterPage())
                                       );
                                     },
                                   child: Text("New member?",
@@ -202,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
       //FlutterToast.showToast(child: Text("Login Successful"));
       _save('true');
       Navigator.pushReplacement(context, new MaterialPageRoute(
-          builder: (BuildContext context) => new MyHomePage() )
+          builder: (BuildContext context) => new MyHomePage(pageController: 1,) )
       );
     }
     else{

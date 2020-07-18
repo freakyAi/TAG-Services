@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tagservices/getintouch.dart';
+import 'getintouch.dart';
 
 class AC extends StatefulWidget {
   @override
@@ -134,9 +134,9 @@ class _ACState extends State<AC> {
                                 gradient: LinearGradient(
                                     begin: Alignment.bottomLeft,
                                     colors: [
-                                      Colors.orange[600],
-                                      Colors.orange[400],
-                                      Colors.orange[400],
+                                      Colors.blue[800],
+                                      Colors.blue[500],
+                                      Colors.blue[300]
                                     ]
                                 )
                             ),

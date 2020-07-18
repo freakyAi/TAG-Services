@@ -1,3 +1,4 @@
+import 'login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -162,52 +163,84 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Registration"),
-      ),
       body: new Container(
-        child: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Form(
-            key: _formKeyRegister,
-            child: SingleChildScrollView(
-              child: new Column(
-                children: <Widget>[
-                  new Row(
-                    children: <Widget>[
-                      new Flexible(child: _buildFirstName()),
-                      SizedBox(width: 20),
-                      new Flexible(child: _buildLastName()),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  _buildPhoneNumber(),
-                  SizedBox(height: 20.0),
-                  _buildEmail(),
-                  SizedBox(height: 20.0),
-                  _buildTimeZone(),
-                  SizedBox(height: 20.0),
-                  _buildPassword(),
-                  SizedBox(height: 20.0),
-                  _buildRePassword(),
-                  SizedBox(height: 50.0),
-                  RaisedButton(
-                    onPressed: (){
-                      if(!_formKeyRegister.currentState.validate()){
-                        return;
-                      }
-                      _formKeyRegister.currentState.save();
-                      //Fluttertoast.showToast(msg: "Registered!");
-                      Navigator.pushReplacement(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new MyHomePage() ),
-                      );
-                    },
-                    child: Text("Submit"),
-                  ),
-                ],
+        decoration: BoxDecoration(
+          color: Colors.blue[50],
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 50,),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 40, 0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                        IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: (){
+                          Navigator.pushReplacement(context, new MaterialPageRoute(
+                              builder: (BuildContext context) => new LoginPage() ),
+                          );
+                        }),
+                        //SizedBox(width: 50,),
+                        Column(
+                          children: [
+                            Text("Register", style: TextStyle(fontSize: 18),)
+                          ],
+                        )
+                    ]
+                ),
               ),
             ),
-          ),
+            SizedBox(height: 10,),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(40, 0, 40, 20),
+                    child: Form(
+                      key: _formKeyRegister,
+                      child: new Column(
+                        children: <Widget>[
+                          new Row(
+                            children: <Widget>[
+                              new Flexible(child: _buildFirstName()),
+                              SizedBox(width: 20),
+                              new Flexible(child: _buildLastName()),
+                            ],
+                          ),
+                          SizedBox(height: 20.0),
+                          _buildPhoneNumber(),
+                          SizedBox(height: 20.0),
+                          _buildEmail(),
+                          SizedBox(height: 20.0),
+                          _buildTimeZone(),
+                          SizedBox(height: 20.0),
+                          _buildPassword(),
+                          SizedBox(height: 20.0),
+                          _buildRePassword(),
+                          SizedBox(height: 50.0),
+                          RaisedButton(
+                            onPressed: (){
+                              if(!_formKeyRegister.currentState.validate()){
+                                return;
+                              }
+                              _formKeyRegister.currentState.save();
+                              //Fluttertoast.showToast(msg: "Registered!");
+                              Navigator.pushReplacement(context, new MaterialPageRoute(
+                                  builder: (BuildContext context) => new MyHomePage() ),
+                              );
+                            },
+                            child: Text("Submit"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

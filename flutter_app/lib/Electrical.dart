@@ -169,9 +169,9 @@ class _ElectricalState extends State<Electrical> {
                                     gradient: LinearGradient(
                                         begin: Alignment.bottomLeft,
                                         colors: [
-                                          Colors.orange[600],
-                                          Colors.orange[400],
-                                          Colors.orange[400],
+                                          Colors.blue[800],
+                                          Colors.blue[500],
+                                          Colors.blue[300]
                                         ]
                                     )
                                 ),

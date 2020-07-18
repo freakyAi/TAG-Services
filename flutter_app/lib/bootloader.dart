@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:tagservices/main.dart';
 
 import 'login.dart';
-
-void main(){
-  runApp(BootPage());
-}
+import 'main.dart';
 
 class BootPage extends StatelessWidget {
   @override
@@ -15,8 +11,10 @@ class BootPage extends StatelessWidget {
     return MaterialApp(
       title: 'TAG Services',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.blue,
         primaryColor: Colors.grey[50],
+        dividerColor: Colors.blue[100],
+        //secondaryHeaderColor: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BootLoad(),
@@ -40,14 +38,14 @@ class _BootLoadState extends State<BootLoad> {
 
   // ignore: missing_return
   Future<bool> _checkForSession() async {
-    await Future.delayed(Duration(milliseconds: 3000),() {});
+    await Future.delayed(Duration(milliseconds: 2000),() {});
     _read();
   }
 
   void _navigateToHome(){
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (BuildContext context) => MyHomePage()
+        builder: (BuildContext context) => MyHomePage(pageController: 1,)
       )
     );
   }
