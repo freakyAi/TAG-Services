@@ -166,9 +166,10 @@ class _GetInTouchState extends State<GetInTouch> {
                           //SizedBox(width: 50,),
                           Column(
                             children: [
-                              Text("CONTACT INFO", style: TextStyle(fontSize: 18),)
+                              Text("CONTACT INFO", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                             ],
-                          )
+                          ),
+                          Column(),
                         ],
                       ),
                     ),

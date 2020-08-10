@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'ImageSlider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -7,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  int currentIndex;
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
@@ -63,12 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       //SizedBox(width: 50,),
                       Column(
                         children: [
-                          Text("TAG Services", style: TextStyle(fontSize: 18),)
+                          Text("TAG Services", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                         ],
-                      )
+                      ),
+                      Column(),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height:10),
+                ImageSlider(),
               ],
             ),
           ),

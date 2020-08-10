@@ -198,9 +198,10 @@ class _TicketHistoryState extends State<TicketHistory> {
                         //SizedBox(width: 50,),
                         Column(
                           children: [
-                            Text("Ticket History", style: TextStyle(fontSize: 18),)
+                            Text("Ticket History", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                           ],
-                        )
+                        ),
+                        Column(),
                       ],
                     ),
                   ),

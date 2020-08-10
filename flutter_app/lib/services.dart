@@ -106,9 +106,10 @@ class _ServicesState extends State<Services> {
                       //SizedBox(width: 50,),
                       Column(
                         children: [
-                          Text("Services", style: TextStyle(fontSize: 18),)
+                          Text("Services", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                         ],
-                      )
+                      ),
+                      Column(),
                     ],
                   ),
                 ),

@@ -207,7 +207,8 @@ class _InvokeTicketState extends State<InvokeTicket> {
                         children: [
                           Text("Invoke New Ticket", style: TextStyle(fontSize: 18),)
                         ],
-                      )
+                      ),
+                      Column(),
                     ],
                   ),
                 ),

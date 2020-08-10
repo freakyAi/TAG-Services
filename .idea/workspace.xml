@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9ed6ef9-c908-436f-b53b-22a5588448e8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/lib/ImageSlider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TAG-Services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TAG-Services.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/services.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,13 +61,19 @@
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flutter_app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flutter_app/assets/images" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Ajju\Projects\TAG-Services\flutter_app\assets\images" />
+      <recent name="E:\Ajju\Projects\TAG-Services\flutter_app\android\gradle\wrapper" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="Bootloader" type="FlutterRunConfigurationType" factoryName="Flutter">
-      <option name="filePath" value="$PROJECT_DIR$/flutter_app/lib/bootloader.dart" />
+    <configuration name="main" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/flutter_app/lib/main.dart" />
       <method v="2" />
     </configuration>
   </component>
@@ -98,9 +116,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added http request to php file..." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593180199826">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="4" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596987951454">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state x="4" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1093.574@0.0.1093.574" timestamp="1596987951454" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1593180199826" />
     <state x="498" y="202" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1593180152598">
       <screen x="0" y="0" width="1536" height="824" />
@@ -114,21 +133,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593180118926" />
-    <state width="670" height="195" key="GridCell.Tab.0.bottom" timestamp="1593363098639">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="498" height="107" key="GridCell.Tab.0.bottom" timestamp="1597049085191">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state width="498" height="107" key="GridCell.Tab.0.bottom/0.0.1093.574@0.0.1093.574" timestamp="1597049085191" />
     <state width="670" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="670" height="195" key="GridCell.Tab.0.center" timestamp="1593363098639">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="498" height="107" key="GridCell.Tab.0.center" timestamp="1597049085187">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state width="498" height="107" key="GridCell.Tab.0.center/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
     <state width="670" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="670" height="195" key="GridCell.Tab.0.left" timestamp="1593363098639">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="498" height="107" key="GridCell.Tab.0.left" timestamp="1597049085187">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state width="498" height="107" key="GridCell.Tab.0.left/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
     <state width="670" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="670" height="195" key="GridCell.Tab.0.right" timestamp="1593363098639">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="498" height="107" key="GridCell.Tab.0.right" timestamp="1597049085187">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state width="498" height="107" key="GridCell.Tab.0.right/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
     <state width="670" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1593184428895">
       <screen x="0" y="0" width="1536" height="824" />
@@ -138,16 +161,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593276867643" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/flutter_app/lib/services.dart</url>
-          <line>56</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="243" y="111" key="com.intellij.ide.util.TipDialog" timestamp="1597048590189">
+      <screen x="0" y="0" width="1093" height="574" />
+    </state>
+    <state x="243" y="111" key="com.intellij.ide.util.TipDialog/0.0.1093.574@0.0.1093.574" timestamp="1597048590189" />
+    <state x="203" y="126" width="672" height="677" key="run.anything.popup" timestamp="1597050625567">
+      <screen x="0" y="0" width="1093" height="574" />
+    </state>
+    <state x="203" y="126" width="672" height="677" key="run.anything.popup/0.0.1093.574@0.0.1093.574" timestamp="1597050625567" />
+    <state x="210" y="-1" width="672" height="678" key="search.everywhere.popup" timestamp="1597049915731">
+      <screen x="0" y="0" width="1093" height="574" />
+    </state>
+    <state x="210" y="-1" width="672" height="678" key="search.everywhere.popup/0.0.1093.574@0.0.1093.574" timestamp="1597049915731" />
   </component>
 </project>
