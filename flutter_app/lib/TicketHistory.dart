@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'TicketDetails.dart';
+import 'storedData.dart';
 
 
 class TicketHistory extends StatefulWidget {
@@ -13,7 +14,6 @@ class TicketHistory extends StatefulWidget {
 }
 
 class Menu {
-
   String id;
   String date;
   String status;
@@ -31,12 +31,18 @@ class Menu {
 
 class _TicketHistoryState extends State<TicketHistory> {
 
-  var menuList;
+  var menuList,ticketData; int userid;
+  List<Menu> menu;
+
   @override initState() {
     super.initState();
     //getTickets();
+    storedData dat = storedData();
+    dat.getInt('userid').then((value) {
+      userid = value;
+      print("\nuserid: "+userid.toString()+"\n");
+    });
   }
-  var ticketData;
 
   double xOffset = 0;
   double yOffset = 0;
@@ -48,8 +54,8 @@ class _TicketHistoryState extends State<TicketHistory> {
     try {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
-      ticketData = await http.get('http://192.168.43.198:8000/TAG/app/tickets.php?ticketNum=123456');
-      print(ticketData.body);
+      ticketData = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?userid='+userid.toString());
+      print("Tickt data: "+ticketData.body);
 
       final  menuMap = jsonDecode(ticketData.body);
 //      menu = Menu.fromJson(menuMap).toList();
@@ -62,11 +68,15 @@ class _TicketHistoryState extends State<TicketHistory> {
     }
   }
 
-  List<Menu> menu;
-
-
   Widget ticketCard(menu) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        print(menu.id);
+        Navigator.push(context, new MaterialPageRoute(
+            builder: (BuildContext context) => new TicketDetails(menu.id))
+        );
+      },
+      child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Card(
@@ -123,15 +133,16 @@ class _TicketHistoryState extends State<TicketHistory> {
                       ),
                     ],
                   ),
-                ]
+                ],
             ),
           ),
-        )
+        ),
+    ),
     );
   }
 
   Widget buildBody(BuildContext context) {
-    getTickets();
+    //getTickets();
     return FutureBuilder<List<Menu>> (
       future: getTickets(),
       builder: (context, snapshot) {
@@ -216,11 +227,11 @@ class _TicketHistoryState extends State<TicketHistory> {
                               width: double.infinity,
                               child: InkWell(
                                 child: buildBody(context),
-                                onTap: () {
-                                  Navigator.push(context, new MaterialPageRoute(
-                                      builder: (BuildContext context) => new TicketDetails())
-                                  );
-                                },
+//                                onTap: () {
+//                                  Navigator.push(context, new MaterialPageRoute(
+//                                      builder: (BuildContext context) => new TicketDetails())
+//                                  );
+//                                },
                               ),
                             ),
                           ),
