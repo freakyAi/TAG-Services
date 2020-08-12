@@ -1,11 +1,131 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//Import Pages
+import 'Electrical.dart';
+import 'Paper.dart';
+import 'Plumbing.dart';
+import 'Vending.dart';
+import 'ac.dart';
+import 'cctv.dart';
+import 'housekeeping.dart';
+import 'it.dart';
 import 'ImageSlider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
+}
+
+List _selectService = [
+  "CCTV Services",
+  "Air Conditioner",
+  "House Keeping",
+  "Electrical Services",
+  "Plumbing Services",
+  "IT Services",
+  "Vending Machines",
+  "Paper Shreddig\nMachines"
+];
+
+List _navigate = [
+  CCTV(),
+  AC(),
+  HouseKeeping(),
+  Electrical(),
+  Plumbing(),
+  IT(),
+  Vending(),
+  Paper()
+];
+
+Widget _buildIconTray() {
+  return ListView.builder(
+    itemCount: 4,
+    shrinkWrap: true,
+    itemBuilder: (BuildContext context, index)=>Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.symmetric(horizontal: 30,),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: (){
+                    print("Index : $index");
+                    Navigator.push(context, new MaterialPageRoute(
+                        builder: (BuildContext context) => _navigate[index*2])
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                    height: MediaQuery.of(context).size.height/6,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      //borderRadius: BorderRadius.circular(10),
+//                      boxShadow: [BoxShadow(
+////                          color: Color.fromRGBO(120, 95, 27, .3),
+////                          blurRadius: 20.0,
+////                          offset: Offset(0, 5)
+////                      )],
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(Icons.ac_unit,color: Colors.blue,size: 40,),
+                        SizedBox(height: 20,),
+                        Text(
+                          _selectService[index*2],
+                          style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 20,),
+              Expanded(
+                child: InkWell(
+                  onTap: (){
+                    print("Index : $index");
+                    Navigator.push(context, new MaterialPageRoute(
+                        builder: (BuildContext context) => _navigate[index*2+1])
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                    height: MediaQuery.of(context).size.height/6,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      //borderRadius: BorderRadius.circular(10),
+//                      boxShadow: [BoxShadow(
+//                          color: Color.fromRGBO(120, 95, 27, .3),
+//                          blurRadius: 20.0,
+//                          offset: Offset(0, 5)
+//                      )],
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(Icons.ac_unit,color: Colors.blue,size: 40,),
+                        SizedBox(height: 20,),
+                        Text(
+                          _selectService[(index*2)+1],
+                          style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20,)
+        ],
+      ),
+    ),
+  );
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -74,8 +194,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height:10),
-                ImageSlider(),
+                //SizedBox(height:10),
+                Container(
+                  //padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      ImageSlider(),
+                      SizedBox(height: 5,),
+                      Container(
+                          height: MediaQuery.of(context).size.height/1.55,
+                          child: _buildIconTray()
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
