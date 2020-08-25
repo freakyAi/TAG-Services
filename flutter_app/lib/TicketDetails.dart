@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tagservices/main.dart';
 
 import 'TicketHistory.dart';
 
@@ -28,7 +29,7 @@ class _TicketDetailsState extends State<TicketDetails> {
                     icon: Icon(Icons.arrow_back_ios),
                     onPressed: () {
                       Navigator.push(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new TicketHistory())
+                          builder: (BuildContext context) => new MyHomePage(pageController: 3,))
                       );
                     }
                   ),
@@ -37,7 +38,8 @@ class _TicketDetailsState extends State<TicketDetails> {
                     children: [
                       Text("Ticket Details", style: TextStyle(fontSize: 18),)
                     ],
-                  )
+                  ),
+                  Column()
                 ],
               ),
             ),

@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9ed6ef9-c908-436f-b53b-22a5588448e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_app/assets/images/slider3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_app/lib/ImageSlider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TAG-Services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TAG-Services.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/lib/services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/services.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +81,21 @@
       <option name="project" value="LOCAL" />
       <updated>1593276072020</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added image carousel effect on homepage">
+      <created>1597051023139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597051023139</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Icon tray and image slider added on homepage. Icons need to be changed.">
+      <created>1597242995515</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1597242995546</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -113,7 +113,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added http request to php file..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added http request to php file..." />
+    <MESSAGE value="added image carousel effect on homepage" />
+    <MESSAGE value="Icon tray and image slider added on homepage. Icons need to be changed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Icon tray and image slider added on homepage. Icons need to be changed." />
   </component>
   <component name="WindowStateProjectService">
     <state x="4" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596987951454">
@@ -125,53 +127,55 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="202" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1593180152598" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1593275744579">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="280" y="0" key="CommitChangelistDialog2" timestamp="1597242988608">
+      <screen x="0" y="0" width="1093" height="574" />
     </state>
+    <state x="280" y="0" key="CommitChangelistDialog2/0.0.1093.574@0.0.1093.574" timestamp="1597242988608" />
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1593275744579" />
     <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1593180118926">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593180118926" />
-    <state width="498" height="107" key="GridCell.Tab.0.bottom" timestamp="1597049085191">
+    <state width="505" height="184" key="GridCell.Tab.0.bottom" timestamp="1597419726337">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state width="498" height="107" key="GridCell.Tab.0.bottom/0.0.1093.574@0.0.1093.574" timestamp="1597049085191" />
+    <state width="505" height="184" key="GridCell.Tab.0.bottom/0.0.1093.574@0.0.1093.574" timestamp="1597419726337" />
     <state width="670" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="498" height="107" key="GridCell.Tab.0.center" timestamp="1597049085187">
+    <state width="505" height="184" key="GridCell.Tab.0.center" timestamp="1597419726336">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state width="498" height="107" key="GridCell.Tab.0.center/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
+    <state width="505" height="184" key="GridCell.Tab.0.center/0.0.1093.574@0.0.1093.574" timestamp="1597419726336" />
     <state width="670" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="498" height="107" key="GridCell.Tab.0.left" timestamp="1597049085187">
+    <state width="505" height="184" key="GridCell.Tab.0.left" timestamp="1597419726335">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state width="498" height="107" key="GridCell.Tab.0.left/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
+    <state width="505" height="184" key="GridCell.Tab.0.left/0.0.1093.574@0.0.1093.574" timestamp="1597419726335" />
     <state width="670" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
-    <state width="498" height="107" key="GridCell.Tab.0.right" timestamp="1597049085187">
+    <state width="505" height="184" key="GridCell.Tab.0.right" timestamp="1597419726336">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state width="498" height="107" key="GridCell.Tab.0.right/0.0.1093.574@0.0.1093.574" timestamp="1597049085187" />
+    <state width="505" height="184" key="GridCell.Tab.0.right/0.0.1093.574@0.0.1093.574" timestamp="1597419726336" />
     <state width="670" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593363098639" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1593184428895">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593184428895" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1593276867643">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593276867643" />
-    <state x="243" y="111" key="com.intellij.ide.util.TipDialog" timestamp="1597048590189">
+    <state x="257" y="41" key="Vcs.Push.Dialog.v2" timestamp="1597243037539">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state x="243" y="111" key="com.intellij.ide.util.TipDialog/0.0.1093.574@0.0.1093.574" timestamp="1597048590189" />
+    <state x="257" y="41" key="Vcs.Push.Dialog.v2/0.0.1093.574@0.0.1093.574" timestamp="1597243037539" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593276867643" />
+    <state x="243" y="111" key="com.intellij.ide.util.TipDialog" timestamp="1597935484674">
+      <screen x="0" y="0" width="1093" height="574" />
+    </state>
+    <state x="243" y="111" key="com.intellij.ide.util.TipDialog/0.0.1093.574@0.0.1093.574" timestamp="1597935484674" />
     <state x="203" y="126" width="672" height="677" key="run.anything.popup" timestamp="1597050625567">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
     <state x="203" y="126" width="672" height="677" key="run.anything.popup/0.0.1093.574@0.0.1093.574" timestamp="1597050625567" />
-    <state x="210" y="-1" width="672" height="678" key="search.everywhere.popup" timestamp="1597049915731">
+    <state x="210" y="0" width="672" height="572" key="search.everywhere.popup" timestamp="1597214912377">
       <screen x="0" y="0" width="1093" height="574" />
     </state>
-    <state x="210" y="-1" width="672" height="678" key="search.everywhere.popup/0.0.1093.574@0.0.1093.574" timestamp="1597049915731" />
+    <state x="210" y="0" width="672" height="572" key="search.everywhere.popup/0.0.1093.574@0.0.1093.574" timestamp="1597214912377" />
   </component>
 </project>

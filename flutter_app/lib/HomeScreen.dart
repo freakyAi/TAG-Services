@@ -18,14 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 List _selectService = [
-  "CCTV Services",
-  "Air Conditioner",
-  "House Keeping",
-  "Electrical Services",
-  "Plumbing Services",
-  "IT Services",
-  "Vending Machines",
-  "Paper Shreddig\nMachines"
+  "CCTV\nServices",
+  "Air\nConditioner",
+  "House\nKeeping",
+  "Electrical\nServices",
+  "Plumbing\nServices",
+  "IT\nServices",
+  "Vending\nMachines",
+  "Paper Shredding\nMachines"
 ];
 
 List _navigate = [
@@ -36,48 +36,48 @@ List _navigate = [
   Plumbing(),
   IT(),
   Vending(),
-  Paper()
+  Paper(),
 ];
 
 Widget _buildIconTray() {
   return ListView.builder(
-    itemCount: 4,
+    itemCount: 3,
     shrinkWrap: true,
     itemBuilder: (BuildContext context, index)=>Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 30,),
+      padding: EdgeInsets.symmetric(horizontal: 10,),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: InkWell(
                   onTap: (){
                     print("Index : $index");
                     Navigator.push(context, new MaterialPageRoute(
-                        builder: (BuildContext context) => _navigate[index*2])
+                        builder: (BuildContext context) => _navigate[index*3])
                     );
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-                    height: MediaQuery.of(context).size.height/6,
+                    //height: MediaQuery.of(context).size.height/6,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       //borderRadius: BorderRadius.circular(10),
 //                      boxShadow: [BoxShadow(
-////                          color: Color.fromRGBO(120, 95, 27, .3),
-////                          blurRadius: 20.0,
-////                          offset: Offset(0, 5)
-////                      )],
+// //                          color: Color.fromRGBO(120, 95, 27, .3),
+// //                          blurRadius: 20.0,
+// //                          offset: Offset(0, 5)
+//                     )],
                     ),
                     child: Column(
                       children: [
                         Icon(Icons.ac_unit,color: Colors.blue,size: 40,),
                         SizedBox(height: 20,),
                         Text(
-                          _selectService[index*2],
+                          _selectService[index*3],
                           style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
                         )
                       ],
@@ -85,33 +85,33 @@ Widget _buildIconTray() {
                   ),
                 ),
               ),
-              SizedBox(width: 20,),
+              //SizedBox(width: 20,),
               Expanded(
                 child: InkWell(
                   onTap: (){
                     print("Index : $index");
                     Navigator.push(context, new MaterialPageRoute(
-                        builder: (BuildContext context) => _navigate[index*2+1])
+                        builder: (BuildContext context) => _navigate[index*3+1])
                     );
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                    height: MediaQuery.of(context).size.height/6,
+                    //height: MediaQuery.of(context).size.height/6,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      //borderRadius: BorderRadius.circular(10),
-//                      boxShadow: [BoxShadow(
-//                          color: Color.fromRGBO(120, 95, 27, .3),
-//                          blurRadius: 20.0,
-//                          offset: Offset(0, 5)
-//                      )],
+                    //   borderRadius: BorderRadius.circular(10),
+                    //  boxShadow: [BoxShadow(
+                    //     //  color: Color.fromRGBO(120, 95, 27, .3),
+                    //     //  blurRadius: 20.0,
+                    //     //  offset: Offset(0, 5)
+                    //  )],
                     ),
                     child: Column(
                       children: [
                         Icon(Icons.ac_unit,color: Colors.blue,size: 40,),
                         SizedBox(height: 20,),
                         Text(
-                          _selectService[(index*2)+1],
+                          _selectService[(index*3)+1],
                           style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
                         )
                       ],
@@ -119,9 +119,42 @@ Widget _buildIconTray() {
                   ),
                 ),
               ),
+              Expanded(
+                child: index < 2 ? InkWell(
+                  onTap: (){
+                    print("Index : $index");
+                    Navigator.push(context, new MaterialPageRoute(
+                        builder: (BuildContext context) => _navigate[index*3+2])
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                    //height: MediaQuery.of(context).size.height/6,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    //   borderRadius: BorderRadius.circular(10),
+                    //  boxShadow: [BoxShadow(
+                    //     //  color: Color.fromRGBO(120, 95, 27, .3),
+                    //     //  blurRadius: 20.0,
+                    //     //  offset: Offset(0, 5)
+                    //  )],
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(Icons.ac_unit,color: Colors.blue,size: 40,),
+                        SizedBox(height: 20,),
+                        Text(
+                          _selectService[(index*3)+2],
+                          style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
+                  ),
+                ) : Container()
+              ),
             ],
           ),
-          SizedBox(height: 20,)
+          //SizedBox(height: 20,)
         ],
       ),
     ),
@@ -147,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.blue[50],
+            color: Colors.grey[50],
             borderRadius: BorderRadius.circular(isDrawerOpen?20:0),
           ),
           child: InkWell(
@@ -161,9 +194,17 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Column(
               children: [
-                SizedBox(height: 50,),
+                SizedBox(height: 30,),
                 Container(
-                  margin: EdgeInsets.fromLTRB(20,0,50,0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                    boxShadow: [BoxShadow(
+                         color: Colors.grey,
+                         blurRadius: 2.0,
+                   )],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  margin: EdgeInsets.fromLTRB(20,0,20,0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -202,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ImageSlider(),
                       SizedBox(height: 5,),
                       Container(
-                          height: MediaQuery.of(context).size.height/1.55,
+                          //height: MediaQuery.of(context).size.height/1.55,
                           child: _buildIconTray()
                       ),
                     ],

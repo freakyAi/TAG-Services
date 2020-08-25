@@ -15,7 +15,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue[900],
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Colors.blue[900],
+              Colors.blue[800],
+              Colors.blue[500]
+            ]
+          )
+        ),
       child: Column(
         children: [
           SizedBox(height: 50,),
