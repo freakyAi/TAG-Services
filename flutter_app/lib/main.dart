@@ -7,6 +7,7 @@ import 'bootloader.dart';
 import 'getintouch.dart';
 import 'invoke.dart';
 import 'services.dart';
+import 'storedData.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,6 +40,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int pageController;
   _MyHomePageState(this.pageController);
+
+  @override initState() {
+    storedData dat = storedData();
+    dat.setInt('userid', 2).then((value) {
+      print('Userid saved');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
