@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'TicketHistory.dart';
+import 'main.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -40,7 +41,7 @@ class _TicketDetailsState extends State<TicketDetails> {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
       var ticketResp = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?ticketId='+widget.ticketId);
-      print("Tickt data: "+ ticketResp.body);
+      print("Ticket data: "+ ticketResp.body);
 
      final ticketRespMap = jsonDecode(ticketResp.body);
 //      menu = Menu.fromJson(menuMap).toList();

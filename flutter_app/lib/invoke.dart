@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:developer';
+import 'package:http/http.dart' as http;
 
 class InvokeTicket extends StatefulWidget {
   @override
@@ -149,9 +153,32 @@ class _InvokeTicketState extends State<InvokeTicket> {
     );
   }
 
+
   _fileOpener() async {
-    path = (await FilePicker.getFile()) as String;
-    print(path);
+    //path = (await FilePicker.getFilePath()) as String; //use getFilePath() to get path and getFile() to get File
+    var pickedFile = await FilePicker.getFile(type: FileType.image);
+    var fileBytes = await pickedFile.readAsBytesSync();
+    String fileString = base64Encode(fileBytes);
+    String filePath = pickedFile.path;
+    var pathSplit = filePath.split("/");
+    log(pathSplit[pathSplit.length-1]);
+    //log(fileString);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = await prefs.getInt('userid').toString();
+    log( userId );
+    
+    var url = 'http://192.168.43.167:8000/TAG/app/tickets.php';
+    var resp = await http.post(url, body: {
+      'newTicket': '1',
+      'service': service,
+      'topic': topic,
+      'summary': summary,
+      'details': details,
+      'image': fileString,
+      'userid': userId
+    });
+    //Just reverts the post request for now
+    print(resp.body);
   }
 
   @override
@@ -239,9 +266,10 @@ class _InvokeTicketState extends State<InvokeTicket> {
                                     return;
                                   }
                                   _formKey.currentState.save();
-                                  Navigator.pushReplacement(context, new MaterialPageRoute(
-                                      builder: (BuildContext context) => new MyHomePage() ),
-                                  );
+                                  // Navigator.pushReplacement(context, new MaterialPageRoute(
+                                  //     builder: (BuildContext context) => new MyHomePage() ),
+                                  // );
+                                  print(summary+"\n"+details+"\n"+service+"\n"+topic);
                                 },
                                 child :Container(
                                   height: 50,

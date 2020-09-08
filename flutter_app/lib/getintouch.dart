@@ -25,6 +25,10 @@ class _GetInTouchState extends State<GetInTouch> {
   double scaleFactor = 1;
   bool isDrawerOpen = false;
 
+  void validateData() {
+    print("${Name}, ${phoneNumber}, ${email}, ${venue}, ${message}");
+  }
+
   Widget _buildName(){
     return TextFormField(
       decoration: new InputDecoration(
@@ -42,7 +46,7 @@ class _GetInTouchState extends State<GetInTouch> {
     );
   }
 
-  Widget _buildphoneNumber(){
+  Widget _buildphoneNumber() {
     return TextFormField(
       decoration: new InputDecoration(
           labelText: "Cell Phone"
@@ -323,9 +327,9 @@ class _GetInTouchState extends State<GetInTouch> {
                                                     }
                                                     _formKeyContact.currentState.save();
                                                     //Fluttertoast.showToast(msg: "Contacted!");
-                                                    Navigator.pushReplacement(context, new MaterialPageRoute(
-                                                        builder: (BuildContext context) => new MyHomePage() ),
-                                                    );
+                                                    // Navigator.pushReplacement(context, new MaterialPageRoute(
+                                                    //     builder: (BuildContext context) => new MyHomePage() ),
+                                                    // );
                                                   },
                                                   child :Container(
                                                     height: 50,

@@ -14,6 +14,7 @@ class TicketHistory extends StatefulWidget {
 }
 
 class Menu {
+
   String id;
   String date;
   String status;
@@ -31,8 +32,13 @@ class Menu {
 
 class _TicketHistoryState extends State<TicketHistory> {
 
-  var menuList,ticketData; int userid;
+  var menuList,ticketData;
+  int userid;
   List<Menu> menu;
+  double xOffset = 0;
+  double yOffset = 0;
+  double scaleFactor = 1;
+  bool isDrawerOpen = false;
 
   @override initState() {
     super.initState();
@@ -43,11 +49,6 @@ class _TicketHistoryState extends State<TicketHistory> {
       print("\nuserid: "+userid.toString()+"\n");
     });
   }
-
-  double xOffset = 0;
-  double yOffset = 0;
-  double scaleFactor = 1;
-  bool isDrawerOpen = false;
 
   // ignore: missing_return
   Future<List<Menu>> getTickets() async {
