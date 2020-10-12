@@ -212,26 +212,33 @@ Widget _buildIcons(){
         mainAxisSpacing: 3.0,
         crossAxisSpacing: 3.0,
         children: _buildGrid.map((var entry) {
-          return GridTile(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.grey[200]
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(context, new MaterialPageRoute(
+                  builder: (BuildContext context) => entry["navigate"])
+              );
+            },
+              child: GridTile(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.grey[200]
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(entry["icon"],color: Colors.blue,size: 40,),
-                    SizedBox(height:10),
-                    Text(
-                           entry["name"],
-                            style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
-                          )
-                  ],
-                ),
-              ));
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(entry["icon"],color: Colors.blue,size: 40,),
+                      SizedBox(height:10),
+                      Text(
+                             entry["name"],
+                              style: TextStyle(color: Colors.black, fontSize: 14,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
+                            )
+                    ],
+                  ),
+                )),
+          );
         }).toList()),
   );
 }

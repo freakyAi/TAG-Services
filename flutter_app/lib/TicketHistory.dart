@@ -88,6 +88,28 @@ class _TicketHistoryState extends State<TicketHistory> {
           child: Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              colors: [
+                                                Colors.blue[800],
+                                                Colors.blue[500],
+                                                Colors.blue[300]
+                                              ]
+                                          )
+                                      ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +161,7 @@ class _TicketHistoryState extends State<TicketHistory> {
           ),
         ),
     ),
-    );
+         ))) );
   }
 
   Widget buildBody(BuildContext context) {
@@ -210,7 +232,7 @@ class _TicketHistoryState extends State<TicketHistory> {
                         //SizedBox(width: 50,),
                         Column(
                           children: [
-                            Text("Ticket History", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                            Text("Ticket History", style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),)
                           ],
                         ),
                         Column(),

@@ -88,7 +88,7 @@ class _TicketDetailsState extends State<TicketDetails> {
                   //SizedBox(width: 50,),
                   Column(
                     children: [
-                      Text("Ticket Details", style: TextStyle(fontSize: 18),)
+                      Text("Ticket Details", style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),)
                     ],
                   ),
                   Column()
@@ -109,7 +109,193 @@ class _TicketDetailsState extends State<TicketDetails> {
                         ),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          //padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              colors: [
+                                                Colors.blue[800],
+                                                Colors.blue[500],
+                                                Colors.blue[300]
+                                              ]
+                                          )
+                                      ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                              child: FutureBuilder<ticketData> (
+                                future: getTicketData(),
+                                // ignore: missing_return
+                                builder: (context, snapshot) {
+                                  if(snapshot.hasError) print(snapshot.error);
+                                  //Show a progress bar until data loads
+                                  // ignore: missing_return
+                                  if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
+
+                                  if(snapshot.hasData) {
+                                        return Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        //crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            //crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  new Row(
+                                                    children: <Widget>[
+                                                      Text("Ticket ID : ", style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold)),
+                                                      SizedBox(width: 60,),
+                                                      Text(ticket.number),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10,),
+                                                  new Row(
+                                                    children: <Widget>[
+                                                      Text("Invoked Date : ", style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold)),
+                                                      SizedBox(width: 20,),
+                                                      Text(ticket.createdDate),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10,),
+                                                  new Row(
+                                                    children: <Widget>[
+                                                      Text("Service Type : ", style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold)),
+                                                      SizedBox(width: 20,),
+                                                      Text(ticket.serviceType),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10,),
+                                                  new Row(
+                                                    children: <Widget>[
+                                                      Text("Status : ", style: TextStyle(color: Colors
+                                                          .black,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold)),
+                                                      SizedBox(width: 20,),
+                                                      Text(ticket.status),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ]
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        )
+                        ),
+                      )
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          //padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              colors: [
+                                                Colors.blue[800],
+                                                Colors.blue[500],
+                                                Colors.blue[300]
+                                              ]
+                                          )
+                                      ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Row(
+                                    //crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          new Row(
+                                            children: <Widget>[
+                                              Text("Agent Name : ", style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold)),
+                                              SizedBox(width: 60,),
+                                              Text("Harold"),
+                                            ],
+                                          ),
+                                          SizedBox(height: 10,),
+                                          new Row(
+                                            children: <Widget>[
+                                              Text("Agent Contact No .: ", style: TextStyle(color: Colors
+                                                  .black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold)),
+                                              SizedBox(width: 20,),
+                                              Text("9881266239"),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ]
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+                         ))   ],
+              )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
 //                          child: Row(
 //                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                              //crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,138 +355,3 @@ class _TicketDetailsState extends State<TicketDetails> {
 //                                ),
 //                              ]
 //                          ),
-                        child: FutureBuilder<ticketData> (
-                          future: getTicketData(),
-                          // ignore: missing_return
-                          builder: (context, snapshot) {
-                            if(snapshot.hasError) print(snapshot.error);
-                            //Show a progress bar until data loads
-                            // ignore: missing_return
-                            if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
-
-                            if(snapshot.hasData) {
-                                  return Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      //crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            new Row(
-                                              children: <Widget>[
-                                                Text("Ticket ID : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 60,),
-                                                Text(ticket.number),
-                                              ],
-                                            ),
-                                            SizedBox(height: 10,),
-                                            new Row(
-                                              children: <Widget>[
-                                                Text("Invoked Date : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.createdDate),
-                                              ],
-                                            ),
-                                            SizedBox(height: 10,),
-                                            new Row(
-                                              children: <Widget>[
-                                                Text("Service Type : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.serviceType),
-                                              ],
-                                            ),
-                                            SizedBox(height: 10,),
-                                            new Row(
-                                              children: <Widget>[
-                                                Text("Status : ", style: TextStyle(color: Colors
-                                                    .black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.status),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ]
-                              );
-                            }
-                          },
-                        )
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        new Row(
-                                          children: <Widget>[
-                                            Text("Agent Name : ", style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                            SizedBox(width: 60,),
-                                            Text("Harold"),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10,),
-                                        new Row(
-                                          children: <Widget>[
-                                            Text("Agent Contact No .: ", style: TextStyle(color: Colors
-                                                .black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                            SizedBox(width: 20,),
-                                            Text("9881266239"),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ]
-                          ),
-                        ),
-                      )
-                  ),
-                ],
-              )
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
