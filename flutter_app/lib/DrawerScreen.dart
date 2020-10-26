@@ -96,7 +96,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       ),
                       new ListTile(
                         leading: Icon(FontAwesomeIcons.history,color: Colors.white,size: 20,),
-                        title: new Text("Ticket History",style: TextStyle(color: Colors.white,),),
+                        title: new Text(
+                          // "Ticket History",
+                          "Active Tickets", //TODO change to Tikcet History later
+                          style: TextStyle(color: Colors.white,),),
                         onTap: () {
                           Navigator.of(context).pop();
                           Navigator.push(context, new MaterialPageRoute(

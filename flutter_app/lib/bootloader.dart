@@ -60,10 +60,10 @@ class _BootLoadState extends State<BootLoad> {
 
   _read() async{
     final prefs = await SharedPreferences.getInstance();
-    final key = 'loginToken';
-    final value = prefs.get(key) ?? 0;
+    final key = 'client_id';
+    final value = prefs.getString(key);
     print('read : $value');
-    if(value == 'true'){
+    if(value != null) {
       print('Home page loading..');
       _navigateToHome();
     }

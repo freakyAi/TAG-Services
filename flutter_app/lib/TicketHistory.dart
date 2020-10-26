@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'TicketDetails.dart';
+import 'constants.dart';
 import 'storedData.dart';
 
 
@@ -16,23 +20,27 @@ class TicketHistory extends StatefulWidget {
 class Menu {
 
   String id;
+  String uuid;
   String date;
-  String status;
+  String service;
+  bool is_closed;
 
-  Menu({ this.id, this.date, this.status});
+  Menu({ this.id, this.uuid, this.date, this.service, this.is_closed});
 
   factory Menu.fromJson(Map<String, dynamic> json) {
     return Menu (
-        id : json['ticket_id'],
-        date : json['number'],
-        status : 'Open'
+        id : json['id'],
+        uuid: json['uuid'],
+        date : json['invoked_date'],
+        service : json['service'],
+        is_closed: json['is_closed']=='1', //convert '1' or '0' to boolean
     );
   }
 }
 
 class _TicketHistoryState extends State<TicketHistory> {
 
-  var menuList,ticketData;
+  var ticketData;
   int userid;
   List<Menu> menu;
   double xOffset = 0;
@@ -43,11 +51,11 @@ class _TicketHistoryState extends State<TicketHistory> {
   @override initState() {
     super.initState();
     //getTickets();
-    storedData dat = storedData();
-    dat.getInt('userid').then((value) {
-      userid = value;
-      print("\nuserid: "+userid.toString()+"\n");
-    });
+    // storedData dat = storedData();
+    // dat.getInt('userid').then((value) {
+    //   userid = value;
+    //   print("\nuserid: "+userid.toString()+"\n");
+    // });
   }
 
   // ignore: missing_return
@@ -55,26 +63,38 @@ class _TicketHistoryState extends State<TicketHistory> {
     try {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
-      ticketData = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?userid='+userid.toString());
-      print("Tickt data: "+ticketData.body);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String clientId = prefs.getString('client_id');
+      ticketData = await http.get('$localhost/TAG/mobile_app/tickets.php?clientid=$clientId'); //TODO change it to clientid from prefs
+      // log("Tickt data: "+ticketData.body);
 
       final  menuMap = jsonDecode(ticketData.body);
-//      menu = Menu.fromJson(menuMap).toList();
       menu = menuMap.map<Menu>((iter)  => Menu.fromJson(iter)).toList();
-//        menuMap.map<Menu>((json) => Photo.fromJson(json)).toList();
-      //print(menuMap);
+      log(menu[0].is_closed.toString());
       return menu;
     } catch(e) {
       print('Got an error!\n ${e.toString()}');
     }
   }
 
-  Widget ticketCard(menu) {
+  Widget ticketCard(Menu data) {
+    //this code used to skip tickets older than 2 days
+    // DateTime now = DateTime.now();
+    // Duration difference = now.difference(parsedDate);
+    // if(difference.inHours > 48) {
+    //   return Container();
+    // }
+    // skip ticket if it is closed
+    if(data.is_closed)
+      return Container();
+
+    DateTime parsedDate = DateTime.parse(data.date);
+    String dateString = DateFormat('d MMM, y').format(parsedDate);
     return GestureDetector(
       onTap: () {
-        print(menu.id);
+        print(data.id);
         Navigator.push(context, new MaterialPageRoute(
-            builder: (BuildContext context) => new TicketDetails(menu.id))
+            builder: (BuildContext context) => new TicketDetails(data.id))
         );
       },
       child: Container(
@@ -86,6 +106,17 @@ class _TicketHistoryState extends State<TicketHistory> {
               borderRadius: BorderRadius.circular(10)
           ),
           child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    colors: [
+                      Colors.blue[200],
+                      Colors.blue[100],
+                      Colors.blue[100]
+                    ]
+                )
+            ),
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
@@ -100,34 +131,48 @@ class _TicketHistoryState extends State<TicketHistory> {
                         children: <Widget>[
                           new Row(
                             children: <Widget>[
-                              Text("Ticket ID : ", style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                              SizedBox(width: 60,),
-                              Text(menu.id),
+                              Container(
+                                width: 130,
+                                child: Text("Ticket ID : ", style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
+                              ),
+                              Text(data.uuid),
                             ],
                           ),
                           SizedBox(height: 10,),
                           new Row(
                             children: <Widget>[
-                              Text("Invoked Date : ", style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                              SizedBox(width: 20,),
-                              Text(menu.date),
+                              Container(
+                                width: 130,
+                                child: Text("Invoked Date : ", style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
+                              ),
+                              Text(dateString),
                             ],
                           ),
                           SizedBox(height: 10,),
                           new Row(
                             children: <Widget>[
-                              Text("Status : ", style: TextStyle(color: Colors
-                                  .black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                              SizedBox(width: 20,),
-                              Text(menu.status),
+                              Container(
+                                width: 130,
+                                child: Text("Service : ",
+                                    style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
+                              ),
+                              Container(
+                                width: 130,
+                                child: Text(
+                                  data.service,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -142,18 +187,19 @@ class _TicketHistoryState extends State<TicketHistory> {
     );
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget buildBody() {
     //getTickets();
     return FutureBuilder<List<Menu>> (
       future: getTickets(),
       builder: (context, snapshot) {
-        if(snapshot.hasError) print(snapshot.error);
+        if(snapshot.hasError) log(snapshot.error);
 
         //Show a progress bar until data loads
         if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
+
         return ListView(
           // ignore: non_constant_identifier_names
-          children: menu.map((Menu) => ticketCard(Menu)).toList(),
+          children: snapshot.data.map((ticketData) => ticketCard(ticketData)).toList(),
         );
       },
     );
@@ -210,7 +256,10 @@ class _TicketHistoryState extends State<TicketHistory> {
                         //SizedBox(width: 50,),
                         Column(
                           children: [
-                            Text("Ticket History", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                            Text(
+                              // "Ticket History",
+                              "Active Tickets", //TODO uncomment above line and comment this one
+                              style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                           ],
                         ),
                         Column(),
@@ -227,14 +276,7 @@ class _TicketHistoryState extends State<TicketHistory> {
                             child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                               width: double.infinity,
-                              child: InkWell(
-                                child: buildBody(context),
-//                                onTap: () {
-//                                  Navigator.push(context, new MaterialPageRoute(
-//                                      builder: (BuildContext context) => new TicketDetails())
-//                                  );
-//                                },
-                              ),
+                              child: buildBody(),
                             ),
                           ),
                         ],

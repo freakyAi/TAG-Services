@@ -1,3 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:get/get.dart';
+import 'package:http/http.dart';
+import 'package:tagservices/constants.dart';
+import 'package:tagservices/validatons.dart';
+
 import 'register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +39,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String username;
+  String email;
   String password;
 
   @override
@@ -109,8 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                                   child: TextField(
                                     onChanged: (String str){
                                       setState(() {
-                                        username = str;
-                                        print(username);
+                                        email = str;
+                                        // print(email);
                                       });
                                     },
                                     decoration: InputDecoration(
@@ -130,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                     onChanged: (String str) {
                                       setState(() {
                                         password = str;
-                                        print(password);
+                                        // print(password);
                                       });
                                     },
                                     decoration: InputDecoration(
@@ -140,13 +148,13 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 30,),
-                                Container(
-                                  child: Text("Forgot Password?",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-
-                                ),
+                                // SizedBox(height: 30,),
+                                // Container(
+                                //   child: Text("Forgot Password?",
+                                //     style: TextStyle(color: Colors.grey),
+                                //   ),
+                                //
+                                // ),
                                 SizedBox(height: 30,),
                                 InkWell(
                                   onTap: checkCredentials,
@@ -169,18 +177,18 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 30,),
-                                InkWell(
-                                  onTap: () {
-                                    //Navigator.of(context).pop();
-                                    Navigator.push(context, new MaterialPageRoute(
-                                    builder: (BuildContext context) => new RegisterPage())
-                                      );
-                                    },
-                                  child: Text("New member?",
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                )
+                                // SizedBox(height: 30,),
+                                // InkWell(
+                                //   onTap: () {
+                                //     //Navigator.of(context).pop();
+                                //     Navigator.push(context, new MaterialPageRoute(
+                                //     builder: (BuildContext context) => new RegisterPage())
+                                //       );
+                                //     },
+                                //   child: Text("New member?",
+                                //     style: TextStyle(color: Colors.grey),
+                                //   ),
+                                // )
                               ],
                             ),
                           ),
@@ -198,24 +206,25 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-  void checkCredentials(){
-    if(username == "aju" && password == "123"){
-      //FlutterToast.showToast(child: Text("Login Successful"));
-      _save('true');
+  Future<void> checkCredentials() async {
+    if(email == null || password == null || !validateEmail(email)) {
+      Get.snackbar('Invalid credentials...', 'Please enter a valid email address!');
+      return;
+    }
+
+    var url = '$localhost/TAG/mobile_app/login.php';
+    var resp = await post(url, body: {"email_id": email, "pass": password});
+    // log(resp.body);
+    Map respJson = jsonDecode(resp.body);
+    if(respJson["status_code"] == "OK") {
+      // log('Successs!');
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('client_id',respJson['client_id']);
+      prefs.setString('email_id',email);
       Navigator.pushReplacement(context, new MaterialPageRoute(
           builder: (BuildContext context) => new MyHomePage(pageController: 1,) )
       );
     }
-    else{
-      //Fluttertoast.showToast(msg: "Invalid Credentials");
-    }
-  }
-
-  _save(String loginToken) async{
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'loginToken';
-    final value = loginToken;
-    prefs.setString(key,value);
   }
 }
 

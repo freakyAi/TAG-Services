@@ -1,26 +1,43 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'TicketHistory.dart';
+import 'constants.dart';
 import 'main.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ticketData {
   String id;
-  String number;
-  String serviceType;
-  String createdDate;
-  String status;
+  String uuid;
+  String service;
+  String invoked_date;
+  String email;
+  String details;
+  String agent_id;
 
-  ticketData({ this.id, this.number, this.serviceType, this.createdDate, this.status});
+  ticketData(
+      {this.id,
+      this.uuid,
+      this.service,
+      this.invoked_date,
+      this.email,
+      this.details,
+      this.agent_id});
 
   factory ticketData.fromJson(Map<String, dynamic> json) {
-    return ticketData (
-        id : json['ticket_id'],
-        number : json['number'],
-        serviceType: 'AC',
-        createdDate: json['created'],
-        status : 'Open'
+    return ticketData(
+      id: json['id'],
+      uuid: json['uuid'],
+      service: json['service'],
+      // invoked_date: json['invoked_date'],
+      invoked_date:
+          DateFormat('d MMM, y').format(DateTime.parse(json['invoked_date'])),
+      email: json['email_id'],
+      details: json['details'],
+      agent_id: json['agent_id'],
     );
   }
 }
@@ -29,28 +46,31 @@ class TicketDetails extends StatefulWidget {
   @override
   _TicketDetailsState createState() => _TicketDetailsState();
   String ticketId;
+
 //  TicketDetails({Key key, this.ticketId}) : super(key: key);
-TicketDetails(this.ticketId);
+  TicketDetails(this.ticketId);
 }
 
 class _TicketDetailsState extends State<TicketDetails> {
-  var ticket;
-
-  Future<ticketData> getTicketData() async{
+  Future<ticketData> getTicketData() async {
+    var ticketResp;
     try {
       //change the ip address to match your laptop's ip address
       //also change port number of wamp to 8000 through its settings
-      var ticketResp = await http.get('http://192.168.43.167:8000/TAG/app/tickets.php?ticketId='+widget.ticketId);
-      print("Ticket data: "+ ticketResp.body);
+      ticketResp = await http
+          .get('$localhost/TAG/mobile_app/tickets.php?ticketId=' + widget.ticketId);
+      // log("Ticket details: " + ticketResp.body);
 
-     final ticketRespMap = jsonDecode(ticketResp.body);
-//      menu = Menu.fromJson(menuMap).toList();
-      ticket = ticketData.fromJson(ticketRespMap);
-//        menuMap.map<Menu>((json) => Photo.fromJson(json)).toList();
-      //print(menuMap);
-      return ticket;
-    } catch(e) {
-      print('Got an error!\n ${e.toString()}');
+      var ticketRespMap = jsonDecode(ticketResp.body);
+      // menu = Menu.fromJson(menuMap).toList();
+      // var ticketInfo = ticketRespMap.map<ticketData>((ticket) => ticketData.fromJson(ticket)).toList(); // (ticketData.fromJson(ticketRespMap));
+      var ticketInfo = ticketData
+          .fromJson(ticketRespMap); // (ticketData.fromJson(ticketRespMap));
+      // menuMap.map<Menu>((json) => Photo.fromJson(json)).toList();
+      log("Logging " + ticketRespMap.toString());
+      return ticketInfo;
+    } catch (e) {
+      log('Got an error!\n ${e.toString()}');
     }
   }
 
@@ -70,25 +90,33 @@ class _TicketDetailsState extends State<TicketDetails> {
         ),
         child: Column(
           children: [
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Container(
-              margin: EdgeInsets.fromLTRB(20,0,50,0),
+              margin: EdgeInsets.fromLTRB(20, 0, 50, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed: () {
-                      print(widget.ticketId+" is it");
-                      Navigator.push(context, new MaterialPageRoute(
-                          builder: (BuildContext context) => new MyHomePage(pageController: 3,))
-                      );
-                    }
-                  ),
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        print(widget.ticketId + " is it");
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new MyHomePage(
+                                      pageController: 3,
+                                    )));
+                      }),
                   //SizedBox(width: 50,),
                   Column(
                     children: [
-                      Text("Ticket Details", style: TextStyle(fontSize: 18),)
+                      Text(
+                        "Ticket Details",
+                        style: TextStyle(fontSize: 18),
+                      )
                     ],
                   ),
                   Column()
@@ -97,210 +125,339 @@ class _TicketDetailsState extends State<TicketDetails> {
             ),
             //SizedBox(height: 0,),
             Expanded(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-//                          child: Row(
-//                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                              //crossAxisAlignment: CrossAxisAlignment.start,
-//                              children: <Widget>[
-//                                Row(
-//                                  //crossAxisAlignment: CrossAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    Column(
-//                                      crossAxisAlignment: CrossAxisAlignment.start,
-//                                      children: <Widget>[
-//                                        new Row(
-//                                          children: <Widget>[
-//                                            Text("Ticket ID : ", style: TextStyle(
-//                                                color: Colors.black,
-//                                                fontSize: 16,
-//                                                fontWeight: FontWeight.bold)),
-//                                            SizedBox(width: 60,),
-//                                            Text(ticket.number),
-//                                          ],
-//                                        ),
-//                                        SizedBox(height: 10,),
-//                                        new Row(
-//                                          children: <Widget>[
-//                                            Text("Invoked Date : ", style: TextStyle(
-//                                                color: Colors.black,
-//                                                fontSize: 16,
-//                                                fontWeight: FontWeight.bold)),
-//                                            SizedBox(width: 20,),
-//                                            Text(ticket.createdDate),
-//                                          ],
-//                                        ),
-//                                        SizedBox(height: 10,),
-//                                        new Row(
-//                                          children: <Widget>[
-//                                            Text("Service Type : ", style: TextStyle(
-//                                                color: Colors.black,
-//                                                fontSize: 16,
-//                                                fontWeight: FontWeight.bold)),
-//                                            SizedBox(width: 20,),
-//                                            Text(ticket.serviceType),
-//                                          ],
-//                                        ),
-//                                        SizedBox(height: 10,),
-//                                        new Row(
-//                                          children: <Widget>[
-//                                            Text("Status : ", style: TextStyle(color: Colors
-//                                                .black,
-//                                                fontSize: 16,
-//                                                fontWeight: FontWeight.bold)),
-//                                            SizedBox(width: 20,),
-//                                            Text(ticket.status),
-//                                          ],
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ],
-//                                ),
-//                              ]
-//                          ),
-                        child: FutureBuilder<ticketData> (
-                          future: getTicketData(),
-                          // ignore: missing_return
-                          builder: (context, snapshot) {
-                            if(snapshot.hasError) print(snapshot.error);
-                            //Show a progress bar until data loads
-                            // ignore: missing_return
-                            if(!snapshot.hasData) return Center(child: CircularProgressIndicator());
+                child: FutureBuilder(
+                    future: getTicketData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        print(snapshot.error);
+                        return Text('Error occured!');
+                      }
+                      //Show a progress bar until data loads
+                      // ignore: missing_return
+                      if (!snapshot.hasData)
+                        return Center(child: CircularProgressIndicator());
 
-                            if(snapshot.hasData) {
-                                  return Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
+                      var ticketInfo = snapshot.data;
+                      double titleWidth = 150;
+                      double titleFontSize = 14.5;
+                      return Column(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Card(
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        colors: [
+                                          Colors.blue[200],
+                                          Colors.blue[100],
+                                          Colors.blue[100]
+                                        ]
+                                    )
+                                ),
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       //crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             new Row(
                                               children: <Widget>[
-                                                Text("Ticket ID : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 60,),
-                                                Text(ticket.number),
+                                                Container(
+                                                  width: titleWidth,
+                                                  child: Text(
+                                                      "Ticket ID : ",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.black,
+                                                          fontSize: titleFontSize,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                ),
+                                                Text(ticketInfo.uuid),
                                               ],
                                             ),
-                                            SizedBox(height: 10,),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
                                             new Row(
                                               children: <Widget>[
-                                                Text("Invoked Date : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.createdDate),
+                                                Container(
+                                                  width: titleWidth,
+                                                  child: Text(
+                                                      "Invoked Date : ",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.black,
+                                                          fontSize: titleFontSize,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                ),
+                                                Text(ticketInfo
+                                                    .invoked_date),
                                               ],
                                             ),
-                                            SizedBox(height: 10,),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
                                             new Row(
                                               children: <Widget>[
-                                                Text("Service Type : ", style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.serviceType),
+                                                Container(
+                                                  width: titleWidth,
+                                                  child: Text(
+                                                      "Service Type : ",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.black,
+                                                          fontSize: titleFontSize,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                ),
+                                                Text(ticketInfo.service),
                                               ],
                                             ),
-                                            SizedBox(height: 10,),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
                                             new Row(
                                               children: <Widget>[
-                                                Text("Status : ", style: TextStyle(color: Colors
-                                                    .black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold)),
-                                                SizedBox(width: 20,),
-                                                Text(ticket.status),
+                                                Container(
+                                                  width: titleWidth,
+                                                  child: Text("Email-id : ",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.black,
+                                                          fontSize: titleFontSize,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                ),
+                                                Text(ticketInfo.email),
                                               ],
                                             ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            new Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Container(
+                                                  width: titleWidth,
+                                                  child: Text("Details : ",
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.black,
+                                                          fontSize: titleFontSize,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .bold)),
+                                                ),
+                                                Container(
+                                                  width: 160,
+                                                  child: Text(
+                                                    ticketInfo.details,
+                                                    maxLines: 10,
+                                                    overflow: TextOverflow
+                                                        .ellipsis,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            FutureBuilder(
+                                              future: getAgentInfo(ticketInfo.agent_id),
+                                              // ignore: missing_return
+                                              builder: (context, snapshot) {
+                                                if (!snapshot.hasData)
+                                                  return Center(
+                                                      child: CircularProgressIndicator());
+                                                var agentData = snapshot.data;
+                                                if (snapshot.hasData)
+                                                  return Row(
+                                                      mainAxisAlignment:
+                                                      MainAxisAlignment.spaceBetween,
+                                                      //crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: <Widget>[
+                                                            //TODO agent details title
+                                                            new Row(
+                                                              children: <Widget>[
+                                                                Container(
+                                                                  width: titleWidth,
+                                                                  child: Text("Agent Name : ",
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize: titleFontSize,
+                                                                          fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                                ),
+                                                                Text(agentData["name"]),
+                                                              ],
+                                                            ),
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            new Row(
+                                                              children: <Widget>[
+                                                                Container(
+                                                                  width: titleWidth,
+                                                                  child: Text(
+                                                                      "Agent Contact No .: ",
+                                                                      style: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize: titleFontSize,
+                                                                          fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                                ),
+                                                                Text(agentData["mobile_no"]),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ]);
+                                              },
+                                            )
                                           ],
                                         ),
-                                      ],
-                                    ),
-                                  ]
-                              );
-                            }
-                          },
-                        )
-                        ),
-                      )
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        new Row(
-                                          children: <Widget>[
-                                            Text("Agent Name : ", style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                            SizedBox(width: 60,),
-                                            Text("Harold"),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10,),
-                                        new Row(
-                                          children: <Widget>[
-                                            Text("Agent Contact No .: ", style: TextStyle(color: Colors
-                                                .black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold)),
-                                            SizedBox(width: 20,),
-                                            Text("9881266239"),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ]
+                                      ]),
+                                )),
                           ),
-                        ),
-                      )
-                  ),
-                ],
-              )
-            ),
+                          // FutureBuilder(
+                          //   future: getAgentInfo(ticketInfo.agent_id),
+                          //   // ignore: missing_return
+                          //   builder: (context, snapshot) {
+                          //     if (!snapshot.hasData)
+                          //       return Center(
+                          //           child: CircularProgressIndicator());
+                          //     var agentData = snapshot.data;
+                          //     double titleWidth = 170;
+                          //     if (snapshot.hasData)
+                          //       return Container(
+                          //           width: MediaQuery.of(context).size.width,
+                          //           padding: EdgeInsets.symmetric(
+                          //               horizontal: 10, vertical: 10),
+                          //           child: Card(
+                          //             elevation: 5,
+                          //             shape: RoundedRectangleBorder(
+                          //                 borderRadius:
+                          //                     BorderRadius.circular(10)),
+                          //             child: Container(
+                          //               decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(10),
+                          //                   gradient: LinearGradient(
+                          //                       begin: Alignment.topCenter,
+                          //                       colors: [
+                          //                         Colors.blue[300],
+                          //                         Colors.blue[200],
+                          //                         Colors.blue[100]
+                          //                       ]
+                          //                   )
+                          //               ),
+                          //               width:
+                          //                   MediaQuery.of(context).size.width,
+                          //               padding: EdgeInsets.symmetric(
+                          //                   horizontal: 10, vertical: 10),
+                          //               child: Row(
+                          //                   mainAxisAlignment:
+                          //                       MainAxisAlignment.spaceBetween,
+                          //                   //crossAxisAlignment: CrossAxisAlignment.start,
+                          //                   children: <Widget>[
+                          //                     Row(
+                          //                       //crossAxisAlignment: CrossAxisAlignment.start,
+                          //                       children: <Widget>[
+                          //                         Column(
+                          //                           crossAxisAlignment:
+                          //                               CrossAxisAlignment
+                          //                                   .start,
+                          //                           children: <Widget>[
+                          //                             //TODO agent details title
+                          //                             new Row(
+                          //                               children: <Widget>[
+                          //                                 Container(
+                          //                                   width: titleWidth,
+                          //                                   child: Text("Agent Name : ",
+                          //                                       style: TextStyle(
+                          //                                           color: Colors
+                          //                                               .black,
+                          //                                           fontSize: 16,
+                          //                                           fontWeight:
+                          //                                               FontWeight
+                          //                                                   .bold)),
+                          //                                 ),
+                          //                                 Text(agentData["name"]),
+                          //                               ],
+                          //                             ),
+                          //                             SizedBox(
+                          //                               height: 10,
+                          //                             ),
+                          //                             new Row(
+                          //                               children: <Widget>[
+                          //                                 Container(
+                          //                                   width: titleWidth,
+                          //                                   child: Text(
+                          //                                       "Agent Contact No .: ",
+                          //                                       style: TextStyle(
+                          //                                           color: Colors
+                          //                                               .black,
+                          //                                           fontSize: 16,
+                          //                                           fontWeight:
+                          //                                               FontWeight
+                          //                                                   .bold)),
+                          //                                 ),
+                          //                                 Text(agentData["mobile_no"]),
+                          //                               ],
+                          //                             ),
+                          //                           ],
+                          //                         ),
+                          //                       ],
+                          //                     ),
+                          //                   ]),
+                          //             ),
+                          //           ));
+                          //   },
+                          // ),
+                        ],
+                      );
+                    })),
           ],
         ),
       ),
     );
+  }
+
+  Future getAgentInfo(agentId) async {
+      var resp = await http.get('$localhost/TAG/mobile_app/tickets.php?agentId=$agentId');
+      log("Agent data: "+resp.body);
+      //
+      var respJson = jsonDecode(resp.body);
+      log(respJson.toString());
+      return respJson;
   }
 }

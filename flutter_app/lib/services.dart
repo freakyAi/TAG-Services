@@ -40,8 +40,8 @@ class _ServicesState extends State<Services> {
     "Electrical Services",
     "Plumbing Services",
     "IT Services",
-    "Vending Machines",
-    "Paper Shredding Machines"
+    // "Vending Machines", //TODO uncomment these when we have their details ready
+    // "Paper Shredding Machines"
   ];
 
   List _navigate = [
@@ -106,7 +106,7 @@ class _ServicesState extends State<Services> {
                       //SizedBox(width: 50,),
                       Column(
                         children: [
-                          Text("Services", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+                          Text("Services", style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),)
                         ],
                       ),
                       Column(),
@@ -117,7 +117,7 @@ class _ServicesState extends State<Services> {
                 Expanded(
                   child: Container(
                     child: ListView.builder(
-                        itemCount: 8,
+                        itemCount: _selectService.length,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, index)=>Container(
                             width: MediaQuery.of(context).size.width,

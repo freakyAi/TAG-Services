@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9ed6ef9-c908-436f-b53b-22a5588448e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flutter_app/lib/storedData.dart" afterDir="false" />
+    <list default="true" id="77196c76-ae01-49cb-84d2-f6e43a42eb29" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flutter_app/lib/ImageCarousel.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/lib/constants.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flutter_app/lib/validatons.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/android/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/android/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_app/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/assets/images/avatar.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/DrawerScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/DrawerScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/HomeScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/Paper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/Paper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/Plumbing.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/Plumbing.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/lib/TicketDetails.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/TicketDetails.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/TicketHistory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/Vending.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/Vending.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/ac.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/ac.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/bootloader.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/bootloader.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/cctv.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/cctv.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/getintouch.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/housekeeping.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/housekeeping.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/invoke.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/it.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/it.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/login.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/lib/services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/lib/services.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tickets.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +59,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="newUI" />
+        <entry key="$PROJECT_DIR$" value="UI2.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,14 +74,20 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flutter_app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flutter_app/lib" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sankarshan Dudhate\StudioProjects\tag_services\flutter_app\lib" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="FlutterRunConfigurationType" factoryName="Flutter">
@@ -72,7 +100,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a9ed6ef9-c908-436f-b53b-22a5588448e8" name="Default Changelist" comment="" />
+      <changelist id="77196c76-ae01-49cb-84d2-f6e43a42eb29" name="Default Changelist" comment="" />
       <created>1591635028085</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -114,68 +142,49 @@
     <option name="LAST_COMMIT_MESSAGE" value="Tickets data on homescreen now working..." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595057241311">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599498158270">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1595057241311" />
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1593180152598">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1593180152598" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599498158270" />
     <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1597208216681">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1597208216681" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1593180118926">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1603682667991">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593180118926" />
-    <state width="1340" height="195" key="GridCell.Tab.0.bottom" timestamp="1597208216931">
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1603682667991" />
+    <state width="1491" height="210" key="GridCell.Tab.0.bottom" timestamp="1603738116534">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1340" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597208216931" />
-    <state width="1340" height="195" key="GridCell.Tab.0.center" timestamp="1597208216931">
+    <state width="1491" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603738116534" />
+    <state width="1491" height="210" key="GridCell.Tab.0.center" timestamp="1603738116534">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1340" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597208216931" />
-    <state width="1340" height="195" key="GridCell.Tab.0.left" timestamp="1597208216930">
+    <state width="1491" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603738116534" />
+    <state width="1491" height="210" key="GridCell.Tab.0.left" timestamp="1603738116534">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1340" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597208216930" />
-    <state width="1340" height="195" key="GridCell.Tab.0.right" timestamp="1597208216931">
+    <state width="1491" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603738116534" />
+    <state width="1491" height="210" key="GridCell.Tab.0.right" timestamp="1603738116534">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1340" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597208216931" />
-    <state x="148" y="65" key="MergeDialog" timestamp="1594721516296">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="148" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1594721516296" />
+    <state width="1491" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603738116534" />
     <state x="501" y="148" key="MultipleFileMergeDialog" timestamp="1595057196595">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="501" y="148" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1595057196595" />
-    <state x="277" y="0" key="SettingsEditor" timestamp="1594185643090">
+    <state x="277" y="0" key="SettingsEditor" timestamp="1599497945086">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594185643090" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1594181719325">
+    <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1599497945086" />
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog" timestamp="1603682151207">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1594181719325" />
-    <state x="499" y="204" key="git4idea.merge.GitPullDialog" timestamp="1594181409408">
+    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824@0.0.1536.824" timestamp="1603682151207" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1599573147732">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1594181409408" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/flutter_app/lib/services.dart</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1536.824@0.0.1536.824" timestamp="1599573147732" />
   </component>
 </project>

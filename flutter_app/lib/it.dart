@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tagservices/main.dart';
 
 import 'getintouch.dart';
 
@@ -11,24 +12,53 @@ class _ITState extends State<IT> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
-          title: new Text("IT Services"),
-        ),
+        // appBar: new AppBar(
+        //   title: new Text("IT Services"),
+        // ),
         body: Container(
+           decoration: BoxDecoration(
+            color: Colors.blue[50],
+          ),
           child: SingleChildScrollView(
             child: Container(
                 child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: <Widget>[
+                        SizedBox(height: 30,),
+              Container(
+                margin: EdgeInsets.fromLTRB(20,0,50,0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        // Navigator.push(context, new MaterialPageRoute(
+                        //     builder: (BuildContext context) => new MyHomePage(pageController: 4,))
+                        // );
+                        Navigator.pop(context);
+                      }
+                    ),
+                    //SizedBox(width: 50,),
+                    Column(
+                      children: [
+                        Text("IT Services", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),)
+                      ],
+                    ),
+                    Column()
+                  ],
+                ),
+              ),
+              SizedBox(height:20),
                         Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(120, 95, 27, .3),
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 5)
+                                color: Color(0xFFC6C6C6),
+                                blurRadius: 2.0,
+                                offset: Offset(0, 2)
                               )],
                             ),
                             child: Padding(
@@ -59,9 +89,9 @@ class _ITState extends State<IT> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(120, 95, 27, .3),
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 5)
+                                color: Color(0xFFC6C6C6),
+                                blurRadius: 2.0,
+                                offset: Offset(0, 2)
                               )],
                             ),
                             child: Padding(
@@ -92,9 +122,9 @@ class _ITState extends State<IT> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [BoxShadow(
-                                  color: Color.fromRGBO(120, 95, 27, .3),
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 5)
+                                color: Color(0xFFC6C6C6),
+                                blurRadius: 2.0,
+                                offset: Offset(0, 2)
                               )],
                             ),
                             child: Padding(

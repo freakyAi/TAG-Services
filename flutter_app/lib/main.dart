@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'HomeScreen.dart';
 import 'DrawerScreen.dart';
@@ -16,7 +17,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Team Acts Group Services',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -42,10 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState(this.pageController);
 
   @override initState() {
-    storedData dat = storedData();
-    dat.setInt('userid', 2).then((value) {
-      print('Userid saved');
-    });
+    // storedData dat = storedData();
+    // dat.setInt('client_id', 2).then((value) {
+    //   print('Clientid saved'); //For testing purposes
+    // });
   }
 
   @override
@@ -81,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
             DrawerScreen(),
             GetInTouch(),
           ],
-      ) : new Stack(
+        )
+            : new Stack(
           children: [
             BootLoad()
           ],

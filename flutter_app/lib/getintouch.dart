@@ -1,5 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
+import 'package:tagservices/constants.dart';
+import 'package:tagservices/validatons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'main.dart';
@@ -13,10 +19,10 @@ class _GetInTouchState extends State<GetInTouch> {
 
   String url = "http://www.teamartsgroup.in";
 
-  String Name;
+  String name;
   String phoneNumber;
   String email;
-  String venue;
+  String city;
   String message;
   final GlobalKey<FormState> _formKeyContact = GlobalKey<FormState>();
 
@@ -26,7 +32,7 @@ class _GetInTouchState extends State<GetInTouch> {
   bool isDrawerOpen = false;
 
   void validateData() {
-    print("${Name}, ${phoneNumber}, ${email}, ${venue}, ${message}");
+    print("${name}, ${phoneNumber}, ${email}, ${city}, ${message}");
   }
 
   Widget _buildName(){
@@ -41,7 +47,7 @@ class _GetInTouchState extends State<GetInTouch> {
         }
       },
       onSaved: (String str){
-        Name = str;
+        name = str;
       },
     );
   }
@@ -55,6 +61,10 @@ class _GetInTouchState extends State<GetInTouch> {
       validator: (String value){
         if(value.isEmpty){
           return "Required";
+        }
+        if(!validatePhoneNo(value)) {
+          Get.snackbar('Invalid credentials', "Please enter a valid mobile number!");
+          return "Invalid phone number!";
         }
       },
       onSaved: (String str){
@@ -73,6 +83,10 @@ class _GetInTouchState extends State<GetInTouch> {
         if(value.isEmpty){
           return "Required";
         }
+        if(!validateEmail(value)) {
+          Get.snackbar('Invalid credentials', "Please enter a valid email address!");
+          return "Invalid email address!";
+        }
       },
       onSaved: (String str){
         email = str;
@@ -83,7 +97,7 @@ class _GetInTouchState extends State<GetInTouch> {
   Widget _buildVenue(){
     return TextFormField(
       decoration: new InputDecoration(
-          labelText: "Venue"
+          labelText: "City"
       ),
       // ignore: missing_return
       validator: (String value){
@@ -92,7 +106,7 @@ class _GetInTouchState extends State<GetInTouch> {
         }
       },
       onSaved: (String str){
-        venue = str;
+        city = str;
       },
     );
   }
@@ -321,15 +335,31 @@ class _GetInTouchState extends State<GetInTouch> {
                                                 _buildMessage(),
                                                 SizedBox(height: 15.0),
                                                 InkWell(
-                                                  onTap: () {
+                                                  onTap: () async {
                                                     if(!_formKeyContact.currentState.validate()){
                                                       return;
                                                     }
                                                     _formKeyContact.currentState.save();
-                                                    //Fluttertoast.showToast(msg: "Contacted!");
-                                                    // Navigator.pushReplacement(context, new MaterialPageRoute(
-                                                    //     builder: (BuildContext context) => new MyHomePage() ),
-                                                    // );
+
+                                                    var url = '$localhost/TAG/mobile_app/enquiry.php';
+                                                    var resp = await post(url, body: {
+                                                      'name': name,
+                                                      'number': phoneNumber,
+                                                      'email': email,
+                                                      'city': city,
+                                                      'enquiry': message,
+                                                    });
+                                                    log(resp.body);
+                                                    if (resp.body == 'OK') {
+                                                      Get.snackbar(
+                                                        'Enquiry submitted successfully!', 'Refreshing page...',);
+                                                      Future.delayed(Duration(seconds: 3,),() => Navigator.push(context, new MaterialPageRoute(
+                                                          builder: (BuildContext context) => MyHomePage(pageController: 5,))
+                                                      ) );
+                                                    } else {
+                                                      //TODO change description to 'Contact our customer care' etc...
+                                                      Get.snackbar('Unknown error', 'Some error occured... Please try again later!', backgroundColor: Colors.red);
+                                                    }
                                                   },
                                                   child :Container(
                                                     height: 50,
@@ -346,7 +376,7 @@ class _GetInTouchState extends State<GetInTouch> {
                                                         )
                                                     ),
                                                     child: Center(
-                                                      child: Text("MAKE A RESERVATION", style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.bold)),
+                                                      child: Text("SUBMIT", style: TextStyle(color: Colors.white, fontSize: 18,fontWeight: FontWeight.bold)),
                                                     ),
                                                   ),
                                                 ),
